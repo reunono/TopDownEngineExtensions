@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
 * **ReferenceFrameCharacterMovement**, _by Necka_ : a specialized variant of the Character Movement ability that corrects for a reference frame camera
 
 ## Why aren't these in the engine directly?
