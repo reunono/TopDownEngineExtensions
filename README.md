@@ -6,6 +6,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **HeldButtonZone**, _by Dougomite_ : a button activated zone for which the player needs to keep the button pressed for a certain duration to activate
 * **MMFeedbackLootDrops**, _by Dougomite_ : an MMFeedback that spawns "loot" (item pickers or any object you want) in a certain radius at weighted chances
 * **ReferenceFrameCharacterMovement**, _by Necka_ : a specialized variant of the Character Movement ability that corrects for a reference frame camera
+* **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
 
 ## Why aren't these in the engine directly?
 Because they weren't created by Renaud, the creator of the TopDown Engine, because I want to keep the Engine simple to use and just pouring features into it (as cool as they may be) wouldn't be such a great idea, and because the Engine is meant to be extended upon, and these extensions are great examples of that.
