@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **Character8WayGridMovement**, _by @jcphlux_ : adds support for 8-way grid movement.
 * **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
 * **HeldButtonZone**, _by Dougomite_ : a button activated zone for which the player needs to keep the button pressed for a certain duration to activate
 * **MMFeedbackLootDrops**, _by Dougomite_ : an MMFeedback that spawns "loot" (item pickers or any object you want) in a certain radius at weighted chances
