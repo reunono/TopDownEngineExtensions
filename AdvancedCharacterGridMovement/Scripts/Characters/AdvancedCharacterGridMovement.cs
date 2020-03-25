@@ -6,8 +6,9 @@ using MoreMountains.Tools;
 /// This will require a GridManager be present in your scene
 /// DO NOT use that component and a CharacterMovement component on the same character.
 /// </summary>
-[AddComponentMenu("TopDown Engine/Character/Abilities/Character 8 Way Grid Movement")]
-public class Character8WayGridMovement : CharacterAbility
+[RequireComponent(typeof(AdvancedTopDownController))]
+[AddComponentMenu("TopDown Engine/Character/Abilities/Advanced Character Grid Movement")]
+public class AdvancedCharacterGridMovement : CharacterAbility
 {
     /// the possible directions on the grid
     public enum GridDirections { None, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight }
@@ -36,6 +37,10 @@ public class Character8WayGridMovement : CharacterAbility
     public bool FastDirectionChanges = true;
     /// the speed threshold after which the character is not considered idle anymore
     public float IdleThreshold = 0.05f;
+
+    public bool DiaginalMovement = true;
+
+    public bool PushBlocks = true;
 
     [Header("Grid")]
     /// the offset to apply when detecting obstacles
@@ -89,14 +94,14 @@ public class Character8WayGridMovement : CharacterAbility
     protected int _walkingAnimationParameter;
     protected int _idleAnimationParameter;
     protected bool _firstPositionRegistered = false;
-    protected TopDown8WayController _8WayController;
+    protected AdvancedTopDownController _AdvancedController;
     /// <summary>
     /// On Initialization, we set our movement speed to WalkSpeed.
     /// </summary>
     protected override void Initialization()
     {
         base.Initialization();
-        _8WayController = GetComponent<TopDown8WayController>();
+        _AdvancedController = GetComponent<AdvancedTopDownController>();
         if (_controller.gameObject.MMGetComponentNoAlloc<TopDownController2D>() != null)
         {
             _controller.FreeMovement = false;
@@ -127,7 +132,15 @@ public class Character8WayGridMovement : CharacterAbility
         RegisterFirstPosition();
 
         _controller.DetectObstacles(GridManager.Instance.GridUnitSize, ObstacleDetectionOffset);
-        _8WayController.DetectObstacles(GridManager.Instance.GridUnitSize, ObstacleDetectionOffset);
+        if (DiaginalMovement)
+        {
+            _AdvancedController.DetectObstacles(GridManager.Instance.GridUnitSize, ObstacleDetectionOffset);
+        }
+        if (PushBlocks)
+        {
+            _AdvancedController.DetectPushables(GridManager.Instance.GridUnitSize, ObstacleDetectionOffset);
+        }
+
         DetermineInputDirection();
         ApplyAcceleration();
         HandleMovement();
@@ -252,10 +265,10 @@ public class Character8WayGridMovement : CharacterAbility
                 || ((_currentDirection == GridDirections.Right) && (_controller.DetectedObstacleRight != null))
                 || ((_currentDirection == GridDirections.Up) && (_controller.DetectedObstacleUp != null))
                 || ((_currentDirection == GridDirections.Down) && (_controller.DetectedObstacleDown != null))
-                || ((_currentDirection == GridDirections.UpLeft) && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null || _8WayController.DetectedObstacleUpLeft != null))
-                || ((_currentDirection == GridDirections.UpRight) && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null || _8WayController.DetectedObstacleUpRight != null))
-                || ((_currentDirection == GridDirections.DownLeft) && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null || _8WayController.DetectedObstacleDownLeft != null))
-                || ((_currentDirection == GridDirections.DownRight) && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null || _8WayController.DetectedObstacleDownRight != null)))
+                || ((_currentDirection == GridDirections.UpLeft) && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null || _AdvancedController.DetectedObstacleUpLeft != null))
+                || ((_currentDirection == GridDirections.UpRight) && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null || _AdvancedController.DetectedObstacleUpRight != null))
+                || ((_currentDirection == GridDirections.DownLeft) && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null || _AdvancedController.DetectedObstacleDownLeft != null))
+                || ((_currentDirection == GridDirections.DownRight) && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null || _AdvancedController.DetectedObstacleDownRight != null)))
             {
                 _currentDirection = _bufferedDirection;
 
@@ -270,10 +283,10 @@ public class Character8WayGridMovement : CharacterAbility
                 || ((_bufferedDirection == GridDirections.Right) && !(_controller.DetectedObstacleRight != null))
                 || ((_bufferedDirection == GridDirections.Up) && !(_controller.DetectedObstacleUp != null))
                 || ((_bufferedDirection == GridDirections.Down) && !(_controller.DetectedObstacleDown != null))
-                || ((_bufferedDirection == GridDirections.UpLeft) && !(_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null || _8WayController.DetectedObstacleUpLeft != null))
-                || ((_bufferedDirection == GridDirections.UpRight) && !(_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null || _8WayController.DetectedObstacleUpRight != null))
-                || ((_bufferedDirection == GridDirections.DownLeft) && !(_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null || _8WayController.DetectedObstacleDownLeft != null))
-                || ((_bufferedDirection == GridDirections.DownRight) && !(_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null || _8WayController.DetectedObstacleDownRight != null)))
+                || ((_bufferedDirection == GridDirections.UpLeft) && !(_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null || _AdvancedController.DetectedObstacleUpLeft != null))
+                || ((_bufferedDirection == GridDirections.UpRight) && !(_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null || _AdvancedController.DetectedObstacleUpRight != null))
+                || ((_bufferedDirection == GridDirections.DownLeft) && !(_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null || _AdvancedController.DetectedObstacleDownLeft != null))
+                || ((_bufferedDirection == GridDirections.DownRight) && !(_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null || _AdvancedController.DetectedObstacleDownRight != null)))
             {
                 _currentDirection = _bufferedDirection;
             }

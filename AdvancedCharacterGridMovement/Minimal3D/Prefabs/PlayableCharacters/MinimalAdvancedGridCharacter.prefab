@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114072752581488692}
   - component: {fileID: 114710286730267884}
   m_Layer: 10
-  m_Name: Minimal8WayGridCharacter
+  m_Name: MinimalAdvancedGridCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699108a02182e0f43bf1817f79bc0a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushablesLayerMask:
+    serializedVersion: 2
+    m_Bits: 8388608
 --- !u!114 &114839196621103566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +264,7 @@ MonoBehaviour:
   BufferSize: 2
   FastDirectionChanges: 1
   IdleThreshold: 0.05
+  DiaginalMovement: 1
   ObstacleDetectionOffset: {x: 0, y: 0.5, z: 0}
   PerfectTile: 0
 --- !u!114 &114691065578444412

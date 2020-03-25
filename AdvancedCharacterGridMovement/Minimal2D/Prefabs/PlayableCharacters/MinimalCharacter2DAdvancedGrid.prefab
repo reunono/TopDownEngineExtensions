@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114654745524214770}
   - component: {fileID: 114704504716019314}
   m_Layer: 10
-  m_Name: MinimalCharacter8Way2DGrid
+  m_Name: MinimalCharacter2DAdvancedGrid
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790328835693532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.173637, y: -44.88817, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4417269262889042}
@@ -145,7 +145,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -156,7 +156,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.4}
+  m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
 --- !u!114 &114186989754477336
 MonoBehaviour:
@@ -206,6 +206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699108a02182e0f43bf1817f79bc0a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushablesLayerMask:
+    serializedVersion: 2
+    m_Bits: 8388608
 --- !u!114 &6145872396032813816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +236,8 @@ MonoBehaviour:
   BufferSize: 2
   FastDirectionChanges: 1
   IdleThreshold: 0.05
+  DiaginalMovement: 1
+  PushBlocks: 1
   ObstacleDetectionOffset: {x: 0, y: 0, z: 0}
   PerfectTile: 0
 --- !u!114 &114419516946932276
