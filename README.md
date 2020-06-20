@@ -6,6 +6,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **AI Performance Manager**, _by Force_ : A system used to disable AIs based on distance to the player for better performance
 * **Character8WayGridMovement**, _by @jcphlux_ : adds support for 8-way grid movement.
 * **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
+* **Extended Singlegon Managers** _by michaelrivet_ : examples of extending singleton Managers
 * **HeldButtonZone**, _by Dougomite_ : a button activated zone for which the player needs to keep the button pressed for a certain duration to activate
 * **MMFeedbackLootDrops**, _by Dougomite_ : an MMFeedback that spawns "loot" (item pickers or any object you want) in a certain radius at weighted chances
 * **MultiInventoryDetails**, _by men8_ : an addon to handle all active inventories on scene. See [this repo](https://github.com/men8/MultiInventoryDetails) for more info.
