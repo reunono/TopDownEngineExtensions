@@ -1,6 +1,6 @@
 ## Extending Singleton Managers
 
-The Engine does a great job making its base classes extendable by virtue of all the methods being `virtual`.  One area that was a bit more difficult to extend was various classes in the `/Managers` folder.  All of the methods are `virtual`, but all the classes are inherit `MMPersistentSingleton` or `MMSingleton`.  They define their `Instance` property as the class type.  This causes some confusion when extending the various Manager classes and trying to continue the Singleton pattern.
+The Engine does a great job making its base classes extendable by virtue of all the methods being `virtual`.  One area that was a bit more difficult to extend was various classes in the `/Managers` folder.  All of the methods are `virtual`, but all the classes are derived from `MMPersistentSingleton` or `MMSingleton`.  They define their `Instance` property as the class type.  This causes some confusion when extending the various Manager classes and trying to continue the Singleton pattern.
 
 For example, we can very easily create a class that extends GameManager and replace the base scripts with it
 ```C#
