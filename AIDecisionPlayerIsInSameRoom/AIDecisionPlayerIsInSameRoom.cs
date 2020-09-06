@@ -3,33 +3,30 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace Awake.Level.Characters.Ai
+public class AiDecisionPlayerIsInSameRoom : AIDecision
 {
-    public class AiDecisionPlayerIsInSameRoom : AIDecision
+    Room[] myRooms;
+
+    public override void Initialization()
     {
-        Room[] myRooms;
+        base.Initialization();
 
-        public override void Initialization()
+        myRooms = FindObjectsOfType<Room>().Where(room => room.GetComponent<BoxCollider2D>()
+            .bounds.Contains(transform.position)).ToArray();
+    }
+
+    public override bool Decide()
+    {
+        if (_brain.Target == null && LevelManager.Instance != null)
         {
-            base.Initialization();
-
-            myRooms = FindObjectsOfType<Room>().Where(room => room.GetComponent<BoxCollider2D>()
-                .bounds.Contains(transform.position)).ToArray();
+            _brain.Target = LevelManager.Instance.Players[0].transform;
         }
 
-        public override bool Decide()
-        {
-            if (_brain.Target == null && LevelManager.Instance != null)
-            {
-                _brain.Target = LevelManager.Instance.Players[0].transform;
-            }
+        return CheckIfTargetIsInSameRoom();
+    }
 
-            return CheckIfTargetIsInSameRoom();
-        }
-
-        protected virtual bool CheckIfTargetIsInSameRoom()
-        {
-            return myRooms.Any(room => room.CurrentRoom);
-        }
+    protected virtual bool CheckIfTargetIsInSameRoom()
+    {
+        return myRooms.Any(room => room.CurrentRoom);
     }
 }
