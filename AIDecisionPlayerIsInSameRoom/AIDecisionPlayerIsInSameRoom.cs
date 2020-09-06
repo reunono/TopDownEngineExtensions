@@ -3,7 +3,7 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-public class AiDecisionPlayerIsInSameRoom : AIDecision
+public class AIDecisionPlayerIsInSameRoom : AIDecision
 {
     Room[] myRooms;
 
