@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using MoreMountains.TopDownEngine;
+﻿using MoreMountains.TopDownEngine;
 using UnityEngine;
 
 namespace ClimbingControllerExtension
