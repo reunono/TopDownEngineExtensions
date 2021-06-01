@@ -5,6 +5,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
 * **AIDecisionPlayerIsInSameRoom**, _by 石田ぎがしー Gigacee_, an AI decision that returns true if the player is in one of the specified rooms, false otherwise.
 * **AI Performance Manager**, _by Force_ : A system used to disable AIs based on distance to the player for better performance
+* **ClimbingController3D**, _by AlexanderGheorghe_ : An extension of TopDownController3D which gives you the option (activated by default) to have CharacterDash3D climb slopes instead of stopping at obstacles and to move the character downwards while dashing, at a configurable speed. It uses CharacterController.Move(), which means you no longer need to put objects to avoid when dashing on the layers of the obstacles layer mask, because the CharacterController will be handling collisions.
 * **Character8WayGridMovement**, _by @jcphlux_ : adds support for 8-way grid movement.
 * **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
 * **HeldButtonZone**, _by Dougomite_ : a button activated zone for which the player needs to keep the button pressed for a certain duration to activate
