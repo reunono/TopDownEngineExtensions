@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **MultipleWeapons**, _by AlexanderGheorghe_ : two scripts, extensions of CharacterHandleWeapon and InputManager that go together to allow you to have your characters handle any number of weapons you want at once, from 0 to 1000000, the possibilities are infinite! includes an InputManager.asset with already configured bindings for the second weapon reload and third weapon input (2, 3 for reloading second and third weapon, middle mouse for shooting the third weapon)
 * **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
 * **AIDecisionPlayerIsInSameRoom**, _by 石田ぎがしー Gigacee_, an AI decision that returns true if the player is in one of the specified rooms, false otherwise.
 * **AI Performance Manager**, _by Force_ : A system used to disable AIs based on distance to the player for better performance
