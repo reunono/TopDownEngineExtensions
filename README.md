@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **MouseDrivenMovement**, _by AlexanderGheorghe_ : an extension of CharacterMovement that allows the player character to pathfind to the clicked spot just like the AI in the MinimalPathfinding3D demo
 * **TypedDamage**, _by AlexanderGheorghe_ : a collection of extension scripts that implement typed damage with scriptable objects, like explained in [this video](https://youtu.be/_q21rEaSlAs).
 * **CharacterProne**, _by AlexanderGheorghe_ : duplicate of CharacterCrouch that allows you to have different animations (Animator parameters "Prone" and "ProneMoving") and different collider resizing, useful for making a character prone like in Metal Gear Solid, for example
 * **TwinStickShooterHandleWeapon**, _by AlexanderGheorghe_ : an extension of CharacterHandleWeapon that gives you the option to shoot on receiving SecondaryMovement input, with configurable minimum magnitude of the input
