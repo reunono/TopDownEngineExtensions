@@ -8,17 +8,16 @@ namespace TopDownEngineExtensions
     /// </summary>
     public class TriggerEventOnAreaClear : MonoBehaviour
     {
-        /// the event to trigger when the area is cleared (all objects marked with AreaClearTarget have been destroyed)
-        [Tooltip("the event to trigger when the room is cleared (all enemies are dead)")]
-        public UnityEvent OnRoomCleared;
-        private int _numberOfEnemiesAlive;
+        [Tooltip("the event to trigger when the area is cleared (all objects marked with AreaClearTarget have been destroyed)")]
+        public UnityEvent OnAreaCleared;
+        private int _numberOfTargetsAlive;
 
-        public void AddEnemy() { _numberOfEnemiesAlive++; }
+        public void AddEnemy() { _numberOfTargetsAlive++; }
 
         public void RemoveEnemy()
         {
-            _numberOfEnemiesAlive--;
-            if (_numberOfEnemiesAlive == 0) OnRoomCleared?.Invoke();
+            _numberOfTargetsAlive--;
+            if (_numberOfTargetsAlive == 0) OnAreaCleared?.Invoke();
         }
     }
 }

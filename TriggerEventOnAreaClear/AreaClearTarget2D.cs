@@ -7,7 +7,7 @@ namespace TopDownEngineExtensions
     /// <summary>
     /// Add this class to an object and it will count as a target to clear (if it is inside a collider with a TriggerEventOnAreaClear component)
     /// </summary>
-    public class AreaClearTarget : MonoBehaviour
+    public class AreaClearTarget2D : MonoBehaviour
     {
         private Health _health;
         private TriggerEventOnAreaClear _triggerEventOnAreaClear;
