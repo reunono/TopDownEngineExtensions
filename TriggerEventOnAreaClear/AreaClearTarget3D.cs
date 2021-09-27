@@ -16,29 +16,29 @@ namespace TopDownEngineExtensions
         private void Awake()
         {
             _health = GetComponent<Health>();
-            if (_health != null) _health.OnDeath += RemoveEnemy;
+            if (_health != null) _health.OnDeath += RemoveTarget;
         }
 
-        private void AddEnemy()
+        private void AddTarget()
         {
             if (_triggerEventOnAreaClear == null) return;
-            _triggerEventOnAreaClear.AddEnemy();
+            _triggerEventOnAreaClear.AddTarget();
             _alreadyRemoved = false;
         }
         
-        private void RemoveEnemy()
+        private void RemoveTarget()
         {
             if (_triggerEventOnAreaClear == null || _alreadyRemoved) return;
-            _triggerEventOnAreaClear.RemoveEnemy();
+            _triggerEventOnAreaClear.RemoveTarget();
             _alreadyRemoved = true;
         }
         
         private void OnEnable()
         {
             _triggerEventOnAreaClear = FindObjectsOfType<TriggerEventOnAreaClear>().SingleOrDefault(room => room.GetComponent<Collider>().bounds.Contains(transform.position));
-            AddEnemy();
+            AddTarget();
         }
 
-        private void OnDisable() { RemoveEnemy(); }
+        private void OnDisable() { RemoveTarget(); }
     }
 }
