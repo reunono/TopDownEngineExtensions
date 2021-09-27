@@ -12,9 +12,9 @@ namespace TopDownEngineExtensions
         public UnityEvent OnAreaCleared;
         private int _numberOfTargetsAlive;
 
-        public void AddEnemy() { _numberOfTargetsAlive++; }
+        public void AddTarget() { _numberOfTargetsAlive++; }
 
-        public void RemoveEnemy()
+        public void RemoveTarget()
         {
             _numberOfTargetsAlive--;
             if (_numberOfTargetsAlive == 0) OnAreaCleared?.Invoke();
