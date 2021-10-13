@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **CharacterDamageMultiplier**, _by AlexanderGheorghe_ : a collection of extension scripts that implement character-level damage multiplier. includes an example of pickable damage multiplier. requires adding _public virtual void ApplyDamageMultiplier(float multiplier) {}_ declaration to Weapon.cs
 * **CharacterInventoryWeaponChanger**, _by AlexanderGheorghe_ : this script allows you to use scroll wheel or number keys to change your weapon to any weapon from your MainInventory
 * **TriggerEventOnAreaClear**, _by AlexanderGheorghe_ : a script that triggers a UnityEvent when all the targets within an area (defined by a 2D or 3D collider) have been destroyed (useful for example in the room system to open doors/portals or spawn chests when all enemies have been killed). tag targets with the respective 2D/3D scripts included
 * **AngleBasedAutoAim**, _by AlexanderGheorghe_ : extensions of WeaponAutoAim2D/3D that aim at the target with the smallest angle between the movement direction and the character-target direction instead of the closest target
