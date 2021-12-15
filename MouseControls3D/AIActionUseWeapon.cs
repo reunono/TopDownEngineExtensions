@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace TopDownEngineExtensions
 {
-    [RequireComponent(typeof(CharacterHandleWeapon))]
     public sealed class AIActionUseWeapon : AIAction
     {
         private CharacterHandleWeapon _characterHandleWeapon;
@@ -13,8 +12,8 @@ namespace TopDownEngineExtensions
         protected override void Awake()
         {
             base.Awake();
-            _characterHandleWeapon = GetComponent<CharacterHandleWeapon>();
             _character = GetComponentInParent<Character>();
+            _characterHandleWeapon = _character.FindAbility<CharacterHandleWeapon>();
         }
 
         public override void PerformAction()

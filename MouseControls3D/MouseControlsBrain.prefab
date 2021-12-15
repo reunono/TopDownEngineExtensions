@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1674092302985828051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026419313473068116}
+  - component: {fileID: 9172297583710034982}
+  - component: {fileID: 501794222721959085}
+  - component: {fileID: 210871237285170503}
+  - component: {fileID: 5420778425989224217}
+  - component: {fileID: 3173420469610490516}
+  - component: {fileID: 5952959763663252957}
+  m_Layer: 10
+  m_Name: MouseControlsBrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026419313473068116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9172297583710034982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec89e4158bf96841b9bc830fc5385ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  States:
+  - StateName: AimWeaponAtMovement
+    Actions:
+      array:
+      - {fileID: 210871237285170503}
+    Transitions:
+      array:
+      - Decision: {fileID: 501794222721959085}
+        TrueState: UseWeapon
+        FalseState: 
+  - StateName: UseWeapon
+    Actions:
+      array:
+      - {fileID: 3173420469610490516}
+      - {fileID: 5420778425989224217}
+    Transitions:
+      array:
+      - Decision: {fileID: 5952959763663252957}
+        TrueState: 
+        FalseState: AimWeaponAtMovement
+      - Decision: {fileID: 501794222721959085}
+        TrueState: 
+        FalseState: AimWeaponAtMovement
+  BrainActive: 1
+  TimeInThisState: 0
+  Target: {fileID: 0}
+  _lastKnownTargetPosition: {x: 0, y: 0, z: 0}
+  ActionsFrequency: 0
+  DecisionFrequency: 0
+  RandomizeFrequencies: 0
+  RandomActionFrequency: {x: 0.5, y: 1}
+  RandomDecisionFrequency: {x: 0.5, y: 1}
+--- !u!114 &501794222721959085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a98e554566f1d4cbbe588ad46cbec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: HaveWeaponLineOfSightAndTargetInRange?
+  ObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  LineOfSightOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &210871237285170503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758bd960e1ca6d41828c58712425d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: AimWeaponAtMovement
+--- !u!114 &5420778425989224217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991f6c096b3db70489c09e588c694519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: StandStill
+--- !u!114 &3173420469610490516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7382c1c50c5967f41bd7d65891ed88ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: UseWeapon
+--- !u!114 &5952959763663252957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674092302985828051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2a4fcea9d83124f8e2356875ed5e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: TargetHasHealth?
