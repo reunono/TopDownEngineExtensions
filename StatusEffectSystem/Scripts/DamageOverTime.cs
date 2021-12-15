@@ -22,7 +22,7 @@ namespace StatusSystem.Scripts
 
         private IEnumerator ApplyDamageEveryTick(Character character)
         {
-            var health = character._health;
+            var health = character.CharacterHealth;
             while (true)
             {
                 yield return new WaitForSeconds(Interval);
