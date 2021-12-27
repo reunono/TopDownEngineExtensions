@@ -2,9 +2,9 @@
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace StatusSystem.Scripts
+namespace StatusSystem
 {
-    public class ApplyStatusAndDamageOnTouch : DamageOnTouch
+    public class ApplyStatusAndDamageOnTouch : MultipliedDamageOnTouch
     {
         [Header("Status effects")]
         [Tooltip("The list of status effects that will be applied to colliding characters (provided they have a CharacterStatusEffectListener with the required status effects)")]

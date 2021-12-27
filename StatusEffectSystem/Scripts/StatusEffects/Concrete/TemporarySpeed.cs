@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace StatusSystem
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "TemporarySpeed", menuName = "Status System/Status Effects/Temporary/Temporary Speed")]
     public class TemporarySpeed : TemporaryStatusEffect
     {
         [Tooltip("How much speed to add to the character when this status effect is applied. Also works with negative numbers for a speed reducing effect.")]

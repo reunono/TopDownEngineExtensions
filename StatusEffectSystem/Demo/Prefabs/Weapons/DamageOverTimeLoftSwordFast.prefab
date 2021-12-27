@@ -1,0 +1,341 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1831551693771866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4565189611861034}
+  - component: {fileID: 114594623923584052}
+  - component: {fileID: 114290391021249986}
+  - component: {fileID: 114096976402940132}
+  - component: {fileID: 114049947547974234}
+  - component: {fileID: 2463841059975174656}
+  m_Layer: 10
+  m_Name: DamageOverTimeLoftSwordFast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4565189611861034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114594623923584052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a8950b0a14f92458961ced597f2a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponName: Sword
+  WeaponCurrentlyActive: 1
+  TriggerMode: 0
+  DelayBeforeUse: 0
+  DelayBeforeUseReleaseInterruption: 0
+  TimeBetweenUses: 0.5
+  TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
+  MagazineBased: 0
+  MagazineSize: 30
+  AutoReload: 0
+  ReloadTime: 2
+  AmmoConsumedPerShot: 1
+  AutoDestroyWhenEmpty: 0
+  AutoDestroyWhenEmptyDelay: 1
+  CurrentAmmoLoaded: 30
+  WeaponAttachmentOffset: {x: 0, y: 0.31, z: 0}
+  FlipWeaponOnCharacterFlip: 0
+  RightFacingFlipValue: {x: 1, y: 1, z: 1}
+  LeftFacingFlipValue: {x: -1, y: 1, z: 1}
+  WeaponUseTransform: {fileID: 0}
+  LeftHandHandle: {fileID: 0}
+  RightHandHandle: {fileID: 0}
+  ModifyMovementWhileAttacking: 0
+  MovementMultiplier: 0
+  PreventAllMovementWhileInUse: 1
+  PreventAllAimWhileInUse: 1
+  RecoilForce: 0
+  Animators: []
+  PerformAnimatorSanityChecks: 0
+  WeaponAnimationID: 10
+  IdleAnimationParameter: 
+  StartAnimationParameter: Slash1Fast
+  DelayBeforeUseAnimationParameter: 
+  SingleUseAnimationParameter: 
+  UseAnimationParameter: 
+  DelayBetweenUsesAnimationParameter: 
+  StopAnimationParameter: 
+  ReloadStartAnimationParameter: 
+  ReloadAnimationParameter: 
+  ReloadStopAnimationParameter: 
+  WeaponAngleAnimationParameter: 
+  WeaponAngleRelativeAnimationParameter: 
+  WeaponStartMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
+  WeaponStopMMFeedback: {fileID: 0}
+  WeaponReloadMMFeedback: {fileID: 0}
+  WeaponReloadNeededMMFeedback: {fileID: 0}
+  InitializeOnStart: 0
+  Interruptable: 0
+  Flipped: 0
+  DamageAreaShape: 2
+  AreaSize: {x: 4, y: 2, z: 4}
+  AreaOffset: {x: 0, y: 0, z: 0}
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
+  InitialDelay: 0.33
+  ActiveDuration: 0.1
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8448
+  DamageCaused: 2
+  Knockback: 1
+  KnockbackForce: {x: 30, y: 0, z: 0}
+  InvincibilityDuration: 0.5
+  CanDamageOwner: 0
+  StatusEffects:
+  - {fileID: 11400000, guid: a6ce5d0980a7b8942a0c0ffcee5a1068, type: 2}
+--- !u!114 &114290391021249986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a8950b0a14f92458961ced597f2a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponName: Sword
+  WeaponCurrentlyActive: 1
+  TriggerMode: 0
+  DelayBeforeUse: 0
+  DelayBeforeUseReleaseInterruption: 0
+  TimeBetweenUses: 0.5
+  TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
+  MagazineBased: 0
+  MagazineSize: 30
+  AutoReload: 0
+  ReloadTime: 2
+  AmmoConsumedPerShot: 1
+  AutoDestroyWhenEmpty: 0
+  AutoDestroyWhenEmptyDelay: 1
+  CurrentAmmoLoaded: 30
+  WeaponAttachmentOffset: {x: 0, y: 0.31, z: 0}
+  FlipWeaponOnCharacterFlip: 0
+  RightFacingFlipValue: {x: 1, y: 1, z: 1}
+  LeftFacingFlipValue: {x: -1, y: 1, z: 1}
+  WeaponUseTransform: {fileID: 0}
+  LeftHandHandle: {fileID: 0}
+  RightHandHandle: {fileID: 0}
+  ModifyMovementWhileAttacking: 0
+  MovementMultiplier: 0
+  PreventAllMovementWhileInUse: 1
+  PreventAllAimWhileInUse: 1
+  RecoilForce: 0
+  Animators: []
+  PerformAnimatorSanityChecks: 0
+  WeaponAnimationID: 10
+  IdleAnimationParameter: 
+  StartAnimationParameter: Slash2Fast
+  DelayBeforeUseAnimationParameter: 
+  SingleUseAnimationParameter: 
+  UseAnimationParameter: 
+  DelayBetweenUsesAnimationParameter: 
+  StopAnimationParameter: 
+  ReloadStartAnimationParameter: 
+  ReloadAnimationParameter: 
+  ReloadStopAnimationParameter: 
+  WeaponAngleAnimationParameter: 
+  WeaponAngleRelativeAnimationParameter: 
+  WeaponStartMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
+  WeaponStopMMFeedback: {fileID: 0}
+  WeaponReloadMMFeedback: {fileID: 0}
+  WeaponReloadNeededMMFeedback: {fileID: 0}
+  InitializeOnStart: 0
+  Interruptable: 0
+  Flipped: 0
+  DamageAreaShape: 2
+  AreaSize: {x: 3, y: 3, z: 4}
+  AreaOffset: {x: 0, y: 0.2, z: 0}
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
+  InitialDelay: 0.16
+  ActiveDuration: 0.066
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8448
+  DamageCaused: 2
+  Knockback: 1
+  KnockbackForce: {x: 30, y: 0, z: 0}
+  InvincibilityDuration: 0.5
+  CanDamageOwner: 0
+  StatusEffects:
+  - {fileID: 11400000, guid: a6ce5d0980a7b8942a0c0ffcee5a1068, type: 2}
+--- !u!114 &114096976402940132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a8950b0a14f92458961ced597f2a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponName: Sword
+  WeaponCurrentlyActive: 1
+  TriggerMode: 0
+  DelayBeforeUse: 0
+  DelayBeforeUseReleaseInterruption: 0
+  TimeBetweenUses: 0.8
+  TimeBetweenUsesReleaseInterruption: 0
+  UseBurstMode: 0
+  BurstLength: 3
+  BurstTimeBetweenShots: 0.1
+  MagazineBased: 0
+  MagazineSize: 30
+  AutoReload: 0
+  ReloadTime: 2
+  AmmoConsumedPerShot: 1
+  AutoDestroyWhenEmpty: 0
+  AutoDestroyWhenEmptyDelay: 1
+  CurrentAmmoLoaded: 30
+  WeaponAttachmentOffset: {x: 0, y: 0.31, z: 0}
+  FlipWeaponOnCharacterFlip: 0
+  RightFacingFlipValue: {x: 1, y: 1, z: 1}
+  LeftFacingFlipValue: {x: -1, y: 1, z: 1}
+  WeaponUseTransform: {fileID: 0}
+  LeftHandHandle: {fileID: 0}
+  RightHandHandle: {fileID: 0}
+  ModifyMovementWhileAttacking: 0
+  MovementMultiplier: 0
+  PreventAllMovementWhileInUse: 1
+  PreventAllAimWhileInUse: 1
+  RecoilForce: 0
+  Animators: []
+  PerformAnimatorSanityChecks: 0
+  WeaponAnimationID: 10
+  IdleAnimationParameter: 
+  StartAnimationParameter: Slash3Fast
+  DelayBeforeUseAnimationParameter: 
+  SingleUseAnimationParameter: 
+  UseAnimationParameter: 
+  DelayBetweenUsesAnimationParameter: 
+  StopAnimationParameter: 
+  ReloadStartAnimationParameter: 
+  ReloadAnimationParameter: 
+  ReloadStopAnimationParameter: 
+  WeaponAngleAnimationParameter: 
+  WeaponAngleRelativeAnimationParameter: 
+  WeaponStartMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedback: {fileID: 0}
+  WeaponUsedMMFeedbackAlt: {fileID: 0}
+  WeaponStopMMFeedback: {fileID: 0}
+  WeaponReloadMMFeedback: {fileID: 0}
+  WeaponReloadNeededMMFeedback: {fileID: 0}
+  InitializeOnStart: 0
+  Interruptable: 0
+  Flipped: 0
+  DamageAreaShape: 2
+  AreaSize: {x: 4, y: 3, z: 4}
+  AreaOffset: {x: 0, y: 0.5, z: 0}
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
+  InitialDelay: 0.3
+  ActiveDuration: 0.15
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8448
+  DamageCaused: 10
+  Knockback: 1
+  KnockbackForce: {x: 100, y: 0, z: 0}
+  InvincibilityDuration: 0.5
+  CanDamageOwner: 0
+  StatusEffects:
+  - {fileID: 11400000, guid: a6ce5d0980a7b8942a0c0ffcee5a1068, type: 2}
+--- !u!114 &114049947547974234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72343fc0e13ec114196ab09ea808900e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DroppableCombo: 1
+  DropComboDelay: 1
+  ComboInProgressAnimationParameter: ComboInProgress
+  Weapons: []
+  OwnerCharacterHandleWeapon: {fileID: 0}
+  TimeSinceLastWeaponStopped: 0
+--- !u!114 &2463841059975174656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831551693771866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0514d297deadac74fb15a7b7326ff0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimControl: 1
+  RotationMode: 0
+  WeaponRotationSpeed: 0
+  MinimumAngle: -180
+  MaximumAngle: 180
+  MinimumMagnitude: 0.2
+  ReticleType: 0
+  Reticle: {fileID: 1373789777524232, guid: 65207112181da7b41bee2bb13af8b883, type: 3}
+  ReticleDistance: 0
+  ReticleHeight: 0
+  ReticleAtMousePosition: 0
+  RotateReticle: 0
+  ReplaceMousePointer: 1
+  MouseDeadZoneRadius: 0.5
+  DisplayReticle: 1
+  MoveCameraTargetTowardsReticle: 0
+  CameraTargetOffset: 0.3
+  CameraTargetMaxDistance: 10
+  CameraTargetSpeed: 5
+  Unrestricted3DAim: 0
+  ReticleMovesWithSlopes: 0
+  ReticleObstacleMask:
+    serializedVersion: 2
+    m_Bits: 9
+  MaximumSlopeElevation: 50

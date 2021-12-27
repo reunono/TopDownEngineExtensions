@@ -4884,6 +4884,8 @@ MonoBehaviour:
   BoundsBasedOn: 0
   LifeTime: 2
   FaceDirection: 1
+  FaceMovement: 0
+  MovementVector: 0
   Speed: 500
   Acceleration: 0
   Direction: {x: -1, y: 0, z: 0}
@@ -4930,6 +4932,7 @@ MonoBehaviour:
   ColorMaterialPropertyName: _Color
   UseMaterialPropertyBlocks: 0
   MasterHealth: {fileID: 0}
+  TargetAnimator: {fileID: 0}
   DisableAnimatorLogs: 1
 --- !u!65 &65720217773407688
 BoxCollider:
@@ -5006,7 +5009,7 @@ MonoBehaviour:
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 12032
-  DamageCaused: 0
+  DamageCaused: 10
   DamageCausedKnockbackType: 1
   DamageCausedKnockbackDirection: 0
   DamageCausedKnockbackForce: {x: 10, y: 2, z: 0}

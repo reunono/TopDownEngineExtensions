@@ -7,6 +7,7 @@ namespace StatusSystem
     public enum StatusEffectEventTypes
     {
         Apply,
+        Unapply,
         Start,
         Stop
     }
@@ -27,8 +28,26 @@ namespace StatusSystem
         }
     }
     
-    public abstract class StatusEffect : ScriptableObject
+    public abstract class StatusEffect : ScriptableObject, MMEventListener<StatusEffectEvent>
     {
         public abstract void Apply(Character character);
+        protected abstract void Unapply(Character character);
+
+        public void OnMMEvent(StatusEffectEvent statusEffectEvent)
+        {
+            if (statusEffectEvent.StatusEffect == this &&
+                statusEffectEvent.Type == StatusEffectEventTypes.Unapply)
+                Unapply(statusEffectEvent.Character);
+        }
+        
+        protected virtual void OnEnable()
+        {
+            this.MMEventStartListening();
+        }
+        
+        protected virtual void OnDisable()
+        {
+            this.MMEventStopListening();
+        }
     }
 }

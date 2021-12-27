@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HealOverTime
   m_EditorClassIdentifier: 
   Duration: 6
-  DamagePerInterval: -5
+  DamagePerInterval: -10
   Interval: 1
