@@ -32,7 +32,5 @@ namespace StatusSystem
             _isStatusEffectActive[character] = false;
             Unapply(character);
         }
-
-        protected abstract void Unapply(Character character);
     }
 }

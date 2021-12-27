@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace StatusSystem.Scripts
+namespace StatusSystem
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "DamageOverTime", menuName = "Status System/Status Effects/Temporary/Damage Over Time")]
     public class DamageOverTime : TemporaryStatusEffect
     {
         [Tooltip("How much damage (or healing in case the value is negative) will be done each interval")]
