@@ -1,0 +1,37 @@
+Unofficial TopDown Engine - Rewired Integration
+Tony Li [Pixel Crushers]
+Provided without guarantee or support.
+Neither Tony Li nor Pixel Crushers assume any liability. Use at your own risk.
+License: GNU General Public License
+
+
+Tested with:
+- Unity 2019.4
+- More Mountains' TopDown Engine 1.8
+- Guavaman Enterprises' Rewired 1.1.35.3
+
+
+INSTRUCTIONS:
+
+1. Import TopDown Engine (TDE).
+2. Import Rewired.
+3. Menu item Window > Rewired > Corgi Integration.
+4. Delete RewiredCorgiEngineInputManager.cs and RewiredInventoryInputManager.cs 
+   (the scripts reporting compile errors).
+5. Import the Unofficial_TDE_Rewired_Integration_YYYY_MM_DD.package.
+   I kept class names that include "CorgiEngine" instead of renaming them to 
+   TopDownEngine to minimize script changes.
+6. Open a TDE scene.
+7. Menu item Window > Rewired > Corgi Integration > Create > Rewired Input Manager
+   (1-player or 4-player)
+8. Menu item Window > Rewired > Create > UI > Rewired Event System.
+   Inspect & click Find Rewired Input Manager.
+9. Remove KoalaCameras > KoalaUICamera > Input Manager component.
+10. Add empty GameObject. Add RewiredCorgiEngineInputManager component. 
+   (Add multiple if using local multiplayer, and set Player ID.)
+11. Inspect KoalaUICamera > InventoryCanvas.
+   - Add RewiredInventoryInputManager; assign the 3 Targets fields.
+   - Remove the Inventory Input Manager component.
+     Tip: Add the Rewired version first so you know what to assign to Target fields.
+
+-end-

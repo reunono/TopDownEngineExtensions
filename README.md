@@ -24,6 +24,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **MultiInventoryDetails**, _by men8_ : an addon to handle all active inventories on scene. See [this repo](https://github.com/men8/MultiInventoryDetails) for more info.
 * **PathfindingAvoidance**, _by septN_ : this CharacterPathfinder3D extension lets you have characters carve the navmesh and avoid each other. You'll need to add a NavMeshObstacle to your character(s), check "Carve" and uncheck "Carve Only Stationary"
 * **ReferenceFrameCharacterMovement**, _by Necka_ : a specialized variant of the Character Movement ability that corrects for a reference frame camera
+* **RewiredIntegration**, _by Tony Li [Pixel Crushers]_ : support for the input solution Rewired, available on the Unity Asset Store.
 
 ## Why aren't these in the engine directly?
 Because they weren't created by Renaud, the creator of the TopDown Engine, because I want to keep the Engine simple to use and just pouring features into it (as cool as they may be) wouldn't be such a great idea, and because the Engine is meant to be extended upon, and these extensions are great examples of that.
