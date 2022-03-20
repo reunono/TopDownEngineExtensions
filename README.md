@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **SpecificInvulnerabilityHealth**, _by AlexanderGheorghe_ : an extension of Health that calculates invulnerability per instigator GameObject (DamageOnTouch usually). this allows you to have overlapping damage on touch all affect your characters and count down invulnerability individually
 * **ProgressionSystem**, _by AlexanderGheorghe_ : a simple, extendable, event based progression system (get experience, level up). includes a demo scene and a .unitypackage for easy installation
 * **Stamina**, _by AlexanderGheorghe_ : simple stamina that gets consumed when running or dashing and stops either if it's too low
 * **StatusEffectSystem**, _by AlexanderGheorghe_ : a simple, extendable, scriptable object and event based status system. includes 5 status effect examples, a demo scene and a .unitypackage for easy installation
