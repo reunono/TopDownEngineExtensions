@@ -4,8 +4,24 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace StaminaExtension
+namespace Stamina
 {
+    public struct StaminaUpdateEvent
+    {
+        public GameObject Target;
+        public float Stamina;
+        public float MaxStamina;
+
+        private static StaminaUpdateEvent e;
+        public static void Trigger(GameObject target, float stamina, float maxStamina)
+        {
+            e.Target = target;
+            e.Stamina = stamina;
+            e.MaxStamina = maxStamina;
+            MMEventManager.TriggerEvent(e);
+        }
+    }
+    
     [AddComponentMenu("TopDown Engine Extensions/Stamina")] 
     public class Stamina : MonoBehaviour, MMEventListener<MMStateChangeEvent<CharacterStates.MovementStates>>
     {
@@ -28,7 +44,9 @@ namespace StaminaExtension
                     _currentStamina = 0;
                 else
                     _currentStamina = value;
+                StaminaUpdateEvent.Trigger(gameObject, _currentStamina, MaximumStamina);
                 if (value >= oldValue) return;
+                if (_currentStamina < 0.001f) OutOfStaminaFeedbacks?.PlayFeedbacks();
                 if (_recovering)
                     StopCoroutine(_recovery);
                 _recovery = StartCoroutine(RecoverStamina());
@@ -119,7 +137,6 @@ namespace StaminaExtension
                     else
                     {
                         _running = false;
-                        OutOfStaminaFeedbacks?.PlayFeedbacks();
                         BroadcastMessage(_runStopMethodName);
                     }
                 }
