@@ -64,11 +64,12 @@ namespace StatusSystem
             HitDamageableFeedback?.PlayFeedbacks(this.transform.position);
             
             // we apply the damage to the thing we've collided with
+            var randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
             var character = Owner.MMGetComponentNoAlloc<Character>();
             if (character != null)
-                _colliderHealth.Damage((int)(DamageCaused * _multipliers[character]), gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
+                _colliderHealth.Damage((int)(randomDamage * _multipliers[character]), gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
             else
-                _colliderHealth.Damage(DamageCaused, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
+                _colliderHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
             if (DamageTakenEveryTime + DamageTakenDamageable > 0)
             {
                 SelfDamage(DamageTakenEveryTime + DamageTakenDamageable);

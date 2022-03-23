@@ -57,11 +57,12 @@ namespace TopDownEngineExtensions
             HitDamageableFeedback?.PlayFeedbacks(this.transform.position);
             
             // we apply the damage to the thing we've collided with
+            var randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
             var typedHealth = _colliderHealth as TypedHealth;
             if (typedHealth != null)
-                typedHealth.Damage(DamageCaused, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection, DamageType);
+                typedHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection, DamageType);
             else
-                _colliderHealth.Damage(DamageCaused, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
+                _colliderHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
             if (DamageTakenEveryTime + DamageTakenDamageable > 0)
             {
                 SelfDamage(DamageTakenEveryTime + DamageTakenDamageable);

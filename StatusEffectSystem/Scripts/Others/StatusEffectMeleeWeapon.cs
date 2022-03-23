@@ -69,7 +69,8 @@ namespace StatusSystem
             _damageOnTouch.SetGizmoSize(AreaSize);
             _damageOnTouch.SetGizmoOffset(AreaOffset);
             _damageOnTouch.TargetLayerMask = TargetLayerMask;
-            _damageOnTouch.DamageCaused = DamageCaused;
+            _damageOnTouch.MinDamageCaused = MinDamageCaused;
+            _damageOnTouch.MaxDamageCaused = MaxDamageCaused;
             _damageOnTouch.DamageCausedKnockbackType = Knockback;
             _damageOnTouch.DamageCausedKnockbackForce = KnockbackForce;
             _damageOnTouch.InvincibilityDuration = InvincibilityDuration;

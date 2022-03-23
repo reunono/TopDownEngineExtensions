@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DamageOverTime
   m_EditorClassIdentifier: 
   Duration: 3
-  DamagePerInterval: 5
+  DamagePerInterval: 9
   Interval: 0.5
