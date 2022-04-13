@@ -84,7 +84,7 @@ namespace TopDownEngineExtensions
             for (var i = 0; i < _characterInventory.MainInventory.Content.Length ; i++)
             {
                 if (InventoryItem.IsNull(_characterInventory.MainInventory.Content[i]) || _characterInventory.MainInventory.Content[i].ItemID != weaponID) continue;
-                MMInventoryEvent.Trigger(MMInventoryEventType.EquipRequest, null, _characterInventory.MainInventory.name, _characterInventory.MainInventory.Content[i], 0, i);
+                MMInventoryEvent.Trigger(MMInventoryEventType.EquipRequest, null, _characterInventory.MainInventory.name, _characterInventory.MainInventory.Content[i], 0, i, "Player1");
                 break;
             }
         }
