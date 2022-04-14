@@ -6,6 +6,9 @@ namespace TopDownEngineExtensions
 {
     public class AngleBasedAutoAim3D : WeaponAutoAim3D
     {
+        [SerializeField]
+        [Tooltip("The maximum angle between the target and the direction the character is currently going in for which auto aim will activate")]
+        private float MaxAngle = 180;
         private Transform[] _unobstructedTargets;
 
         protected override void Initialization()
@@ -41,7 +44,9 @@ namespace TopDownEngineExtensions
                 Target = _unobstructedTargets[i];
             }
 
-            return true;
+            if (smallestAngle < MaxAngle) return true;
+            Target = null;
+            return false;
         }
     }
 }
