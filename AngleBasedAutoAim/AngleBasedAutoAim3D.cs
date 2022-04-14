@@ -6,27 +6,30 @@ namespace TopDownEngineExtensions
 {
     public class AngleBasedAutoAim3D : WeaponAutoAim3D
     {
+        [SerializeField]
+        [Tooltip("The maximum angle between the target and the direction the character is currently going in for which auto aim will activate")]
+        private float MaxAngle = 180;
         private Transform[] _unobstructedTargets;
 
         protected override void Initialization()
         {
             base.Initialization();
-            _unobstructedTargets = new Transform[_hit.Length];
+            _unobstructedTargets = new Transform[_hits.Length];
         }
 
         protected override bool ScanForTargets()
         {
             Target = null;
-            var numberOfHits = Physics.OverlapSphereNonAlloc(Origin, ScanRadius, _hit, TargetsMask);
+            var numberOfHits = Physics.OverlapSphereNonAlloc(Origin, ScanRadius, _hits, TargetsMask);
             
             if (numberOfHits == 0) return false;
             var numberOfUnobstructedTargets = 0;
             for (var i = 0; i < numberOfHits; i++)
             {
-                _raycastDirection = _hit[i].transform.position - _raycastOrigin;
-                var hit = MMDebug.Raycast3D(_raycastOrigin, _raycastDirection, Vector3.Distance(_hit[i].transform.position, _raycastOrigin), ObstacleMask.value, Color.yellow, true);
+                _raycastDirection = _hits[i].transform.position - _raycastOrigin;
+                var hit = MMDebug.Raycast3D(_raycastOrigin, _raycastDirection, Vector3.Distance(_hits[i].transform.position, _raycastOrigin), ObstacleMask.value, Color.yellow, true);
                 if (hit.collider != null) continue;
-                _unobstructedTargets[numberOfUnobstructedTargets] = _hit[i].transform;
+                _unobstructedTargets[numberOfUnobstructedTargets] = _hits[i].transform;
                 numberOfUnobstructedTargets++;
             }
 
@@ -41,7 +44,9 @@ namespace TopDownEngineExtensions
                 Target = _unobstructedTargets[i];
             }
 
-            return true;
+            if (smallestAngle < MaxAngle) return true;
+            Target = null;
+            return false;
         }
     }
 }
