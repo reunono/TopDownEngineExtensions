@@ -22,10 +22,10 @@ namespace TopDownEngineExtensions
 
             Target = null;
 
-            var count = Physics2D.OverlapCircle(_weapon.Owner.transform.position, ScanRadius, _contactFilter, _detectionColliders);
+            var count = Physics2D.OverlapCircleNonAlloc(_weapon.Owner.transform.position, ScanRadius, _results, TargetsMask);
             if (count == 0) return false;
             var unobstructedTargets = new List<Transform>();
-            foreach (var target in _detectionColliders)
+            foreach (var target in _results)
             {
                 _boxcastDirection = (Vector2)(target.bounds.center - _raycastOrigin);
                 var hit = Physics2D.BoxCast(_raycastOrigin, LineOfFireBoxcastSize, 0f, _boxcastDirection.normalized, _boxcastDirection.magnitude, ObstacleMask);
