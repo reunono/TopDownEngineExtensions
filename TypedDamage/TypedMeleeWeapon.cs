@@ -2,12 +2,14 @@
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace TopDownEngineExtensions
+namespace TypedDamage
 {
     public class TypedMeleeWeapon : MeleeWeapon
     {
         [MMInspectorGroup("Damage type", true, 25)]
         public DamageType DamageType;
+
+        private TypedDamageOnTouch _typedDamageOnTouch;
         protected override void CreateDamageArea()
         {
             _damageArea = new GameObject();
@@ -64,7 +66,9 @@ namespace TopDownEngineExtensions
                 rigidBody.isKinematic = true;
             }
 
-            _damageOnTouch = _damageArea.AddComponent<TypedDamageOnTouch>();
+            _typedDamageOnTouch = _damageArea.AddComponent<TypedDamageOnTouch>();
+            _typedDamageOnTouch.DamageType = DamageType;
+            _damageOnTouch = _typedDamageOnTouch;
             _damageOnTouch.SetGizmoSize(AreaSize);
             _damageOnTouch.SetGizmoOffset(AreaOffset);
             _damageOnTouch.TargetLayerMask = TargetLayerMask;
@@ -75,13 +79,17 @@ namespace TopDownEngineExtensions
             _damageOnTouch.InvincibilityDuration = InvincibilityDuration;
             _damageOnTouch.HitDamageableFeedback = HitDamageableFeedback;
             _damageOnTouch.HitNonDamageableFeedback = HitNonDamageableFeedback;
-            var typedDamageOnTouch = _damageOnTouch as TypedDamageOnTouch;
-            typedDamageOnTouch.DamageType = DamageType;
             
             if (!CanDamageOwner && (Owner != null))
             {
                 _damageOnTouch.IgnoreGameObject(Owner.gameObject);    
             }
+        }
+
+        private void OnValidate()
+        {
+            if (_typedDamageOnTouch == null) return;
+            _typedDamageOnTouch.DamageType = DamageType;
         }
     }
 }
