@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace TopDownEngineExtensions
+namespace TypedDamage
 {
-    [CreateAssetMenu(menuName = "ScriptableCookbook/Damage Type")]
+    [CreateAssetMenu]
     public class DamageType : ScriptableObject {}
 }
