@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5990531883991410560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014346845568169495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe1793e742eea949a29e41e68902266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoundsBasedOn: 0
+  LifeTime: 2
+  FaceDirection: 1
+  FaceMovement: 0
+  MovementVector: 0
+  Speed: 500
+  Acceleration: 0
+  Direction: {x: -1, y: 0, z: 0}
+  DirectionCanBeChangedBySpawner: 1
+  FlipValue: {x: -1, y: 1, z: 1}
+  ProjectileIsFacingRight: 1
+  InitialInvulnerabilityDuration: 0
+  DamageOwner: 0
+  SpeedMultiplier: {fileID: 11400000, guid: 446e1f510c802714e8726296e4fd95c5, type: 2}
+--- !u!1001 &7012492749077968177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1854097648223014, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_Name
+      value: SpeedLoftAssaultRifleBulletAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585949775055698, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114564512680273234, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+    - {fileID: 114520861229986060, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a2b53980a4b988642b17482ecde04dac, type: 3}
+--- !u!1 &7014346845568169495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1854097648223014, guid: a2b53980a4b988642b17482ecde04dac,
+    type: 3}
+  m_PrefabInstance: {fileID: 7012492749077968177}
+  m_PrefabAsset: {fileID: 0}

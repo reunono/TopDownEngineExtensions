@@ -2,6 +2,7 @@
 This repository contains community-created extensions for the TopDown Engine, More Mountains' bestselling top down games solution, [available on the Unity Asset Store](https://assetstore.unity.com/packages/templates/systems/topdown-engine-89636?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing Character Ability, to brand new ones, or new ways to use the engine.
 
 ## Contents
+* **SpeedMultipliers**, _by AlexanderGheorghe_ : extension scripts that add speed multipliers. includes demo of slowing down all enemy characters while the player continues to move at normal speed
 * **PickableAbilities**, _by AlexanderGheorghe_ : PickableItem extension that allows configuring a list of abilities to be enabled on the picking character
 * **ToggleCrouch**, _by AlexanderGheorghe_ : CharacterCrouch extension that makes the crouch button toggle instead of having to hold it to keep crouching
 * **SpecificInvulnerabilityHealth**, _by AlexanderGheorghe_ : an extension of Health that calculates invulnerability per instigator GameObject (DamageOnTouch usually). this allows you to have overlapping damage on touch all affect your characters and count down invulnerability individually
