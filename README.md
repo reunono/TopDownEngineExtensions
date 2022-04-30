@@ -34,6 +34,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **TriggerEventOnAreaClear**, _by AlexanderGheorghe_ : a script that triggers a UnityEvent when all the targets within an area (defined by a 2D or 3D collider) have been destroyed (useful for example in the room system to open doors/portals or spawn chests when all enemies have been killed). tag targets with the respective 2D/3D scripts included
 * **TwinStickShooterHandleWeapon**, _by AlexanderGheorghe_ : an extension of CharacterHandleWeapon that gives you the option to shoot on receiving SecondaryMovement input, with configurable minimum magnitude of the input
 * **TypedDamage**, _by AlexanderGheorghe_ : a collection of extension scripts that implement typed damage with scriptable objects, like explained in [this video](https://youtu.be/_q21rEaSlAs).
+* **WeaponLaserSightEx**, _by Velsthinez_ : an extended version of the base WeaponLaserSight to create a widening laser when player turns
 
 ## Why aren't these in the engine directly?
 
