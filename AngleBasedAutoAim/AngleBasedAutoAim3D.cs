@@ -1,4 +1,5 @@
-﻿using MoreMountains.Tools;
+﻿using System;
+using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
@@ -10,11 +11,13 @@ namespace TopDownEngineExtensions
         [Tooltip("The maximum angle between the target and the direction the character is currently going in for which auto aim will activate")]
         private float MaxAngle = 180;
         private Transform[] _unobstructedTargets;
+        private WeaponAim3D _weaponAim3D;
 
         protected override void Initialization()
         {
             base.Initialization();
             _unobstructedTargets = new Transform[_hits.Length];
+            _weaponAim3D = (WeaponAim3D)_weaponAim;
         }
 
         protected override bool ScanForTargets()
@@ -38,7 +41,7 @@ namespace TopDownEngineExtensions
             Target = _unobstructedTargets[0];
             for (var i = 0; i < numberOfUnobstructedTargets; i++)
             {
-                var angleToTarget = Vector3.Angle(_topDownController3D.CurrentDirection, _unobstructedTargets[i].position - _topDownController3D.transform.position);
+                var angleToTarget = Vector3.Angle(AimDirection(), _unobstructedTargets[i].position - _topDownController3D.transform.position);
                 if (angleToTarget > smallestAngle) continue;
                 smallestAngle = angleToTarget;
                 Target = _unobstructedTargets[i];
@@ -47,6 +50,44 @@ namespace TopDownEngineExtensions
             if (smallestAngle < MaxAngle) return true;
             Target = null;
             return false;
+            
+            Vector3 AimDirection()
+            {
+                switch (_originalAimControl)
+                {
+                    case WeaponAim.AimControls.Off:
+                        _weaponAim3D.GetOffAim();
+                        break;
+                    case WeaponAim.AimControls.PrimaryMovement:
+                        _weaponAim3D.GetPrimaryMovementAim();
+                        break;
+                    case WeaponAim.AimControls.SecondaryMovement:
+                        _weaponAim3D.GetSecondaryMovementAim();
+                        break;
+                    case WeaponAim.AimControls.Mouse:
+                        _weaponAim3D.GetMouseAim();
+                        break;
+                    case WeaponAim.AimControls.Script:
+                        _weaponAim3D.GetScriptAim();
+                        break;
+                    case WeaponAim.AimControls.SecondaryThenPrimaryMovement:
+                        if (_weapon.Owner.LinkedInputManager.SecondaryMovement.magnitude > _weaponAim3D.MinimumMagnitude)
+                            _weaponAim3D.GetSecondaryMovementAim();
+                        else
+                            _weaponAim3D.GetPrimaryMovementAim();
+                        break;
+                    case WeaponAim.AimControls.PrimaryThenSecondaryMovement:
+                        if (_weapon.Owner.LinkedInputManager.PrimaryMovement.magnitude > _weaponAim3D.MinimumMagnitude)
+                            _weaponAim3D.GetPrimaryMovementAim();
+                        else
+                            _weaponAim3D.GetSecondaryMovementAim();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                return _weaponAim3D.CurrentAim;
+            }
         }
     }
 }
