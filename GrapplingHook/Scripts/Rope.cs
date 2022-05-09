@@ -1,0 +1,73 @@
+﻿using System.Collections;
+using MoreMountains.Tools;
+using UnityEngine;
+
+namespace GrapplingHook
+{
+    public class Rope : MonoBehaviour
+    {
+        [SerializeField] private int Resolution, WaveCount, WobbleCount;
+        [SerializeField] private float WaveSize, Duration;
+        private LineRenderer _line;
+        private Coroutine _playAnimation;
+
+        [MMInspectorButton("PlayAnimation")] 
+        public bool PlayAnimationTestButton;
+
+        private void Awake()
+        {
+            _line = GetComponent<LineRenderer>();
+        }
+
+        public void PlayAnimation(Vector3 target)
+        {
+            StopAnimation();
+            _playAnimation = StartCoroutine(AnimateRope(target));
+        }
+        
+        public void StopAnimation()
+        {
+            _line.positionCount = 0;
+            if (_playAnimation != null) StopCoroutine(_playAnimation);
+        }
+
+        private IEnumerator AnimateRope(Vector3 targetPosition)
+        {
+            _line.positionCount = Resolution;
+            var angle = LookAtAngle(targetPosition - transform.position);
+            var percent = 0f;
+            while (percent < 1)
+            {
+                percent += Time.deltaTime / Duration;
+                SetPoints(targetPosition, percent, angle);
+                yield return null;
+            }
+
+            _line.positionCount = 2;
+            _line.SetPosition(1, targetPosition);
+            while (true)
+            {
+                _line.SetPosition(0, transform.position);
+                yield return null;
+            }
+
+            float LookAtAngle(Vector3 destination) { return Mathf.Atan2(destination.z, destination.x) * Mathf.Rad2Deg; }
+        }
+
+        private void SetPoints(Vector3 targetPosition, float percent, float angle)
+        {
+            var position = transform.position;
+            var ropeEnd = Vector3.Lerp(position, targetPosition, percent);
+            var length = Vector3.Distance(position, ropeEnd);
+            for (var i = 0; i < Resolution; i++)
+            {
+                var x = (float) i / Resolution * length;
+                var reversePercent = 1 - percent;
+                var amplitude = Mathf.Sin(reversePercent * WobbleCount * Mathf.PI) * (1-(float)i/Resolution) * WaveSize;
+                var z = Mathf.Sin((float)WaveCount * i / Resolution * 2 * Mathf.PI * reversePercent) * amplitude;
+                var pointPosition = MMMaths.RotatePointAroundPivot(position + new Vector3(x, 0, z), position, Vector3.down*angle);
+                _line.SetPosition(i, pointPosition);
+            }
+        }
+    }
+}
