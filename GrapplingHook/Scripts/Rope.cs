@@ -11,14 +11,20 @@ namespace GrapplingHook
         private LineRenderer _line;
         private Coroutine _playAnimation;
 
-        [MMInspectorButton("PlayAnimation")] 
+        [Header("Testing")] 
+        [SerializeField] private Vector3 TestTarget;
+        [MMInspectorButton("PlayAnimationTest")] 
         public bool PlayAnimationTestButton;
+        [MMInspectorButton("StopAnimation")] 
+        public bool StopAnimationTestButton;
 
         private void Awake()
         {
             _line = GetComponent<LineRenderer>();
         }
 
+        private void PlayAnimationTest() { PlayAnimation(TestTarget); }
+        
         public void PlayAnimation(Vector3 target)
         {
             StopAnimation();
@@ -34,12 +40,11 @@ namespace GrapplingHook
         private IEnumerator AnimateRope(Vector3 targetPosition)
         {
             _line.positionCount = Resolution;
-            var angle = LookAtAngle(targetPosition - transform.position);
             var percent = 0f;
             while (percent < 1)
             {
                 percent += Time.deltaTime / Duration;
-                SetPoints(targetPosition, percent, angle);
+                SetPoints(targetPosition, percent);
                 yield return null;
             }
 
@@ -50,24 +55,28 @@ namespace GrapplingHook
                 _line.SetPosition(0, transform.position);
                 yield return null;
             }
-
-            float LookAtAngle(Vector3 destination) { return Mathf.Atan2(destination.z, destination.x) * Mathf.Rad2Deg; }
         }
 
-        private void SetPoints(Vector3 targetPosition, float percent, float angle)
+        private void SetPoints(Vector3 targetPosition, float percent)
         {
             var position = transform.position;
             var ropeEnd = Vector3.Lerp(position, targetPosition, percent);
-            var length = Vector3.Distance(position, ropeEnd);
+            var ropeVector = ropeEnd - position;
+            var horizontalProjectionLength = Vector3.ProjectOnPlane(ropeVector, Vector3.up).magnitude;
+            var verticalProjectionLength = Vector3.ProjectOnPlane(ropeVector.MMSetZ(0), Vector3.right).magnitude;
             for (var i = 0; i < Resolution; i++)
             {
-                var x = (float) i / Resolution * length;
+                var projectionLengthMultiplier = (float)i / Resolution;
+                var x =  projectionLengthMultiplier * horizontalProjectionLength;
+                var y = projectionLengthMultiplier * verticalProjectionLength * (ropeVector.y < 0 ? -1 : 1);
                 var reversePercent = 1 - percent;
                 var amplitude = Mathf.Sin(reversePercent * WobbleCount * Mathf.PI) * (1-(float)i/Resolution) * WaveSize;
                 var z = Mathf.Sin((float)WaveCount * i / Resolution * 2 * Mathf.PI * reversePercent) * amplitude;
-                var pointPosition = MMMaths.RotatePointAroundPivot(position + new Vector3(x, 0, z), position, Vector3.down*angle);
+                var pointPosition = MMMaths.RotatePointAroundPivot(position + new Vector3(x, y, z), position, Vector3.down*LookAtAngle(ropeVector));
                 _line.SetPosition(i, pointPosition);
             }
+            
+            float LookAtAngle(Vector3 destination) { return Mathf.Atan2(destination.z, destination.x) * Mathf.Rad2Deg; }
         }
     }
 }

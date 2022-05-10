@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2281460348057383467}
   - component: {fileID: 2281460348057383460}
   - component: {fileID: 2558851187893346450}
+  - component: {fileID: -7394562790483452303}
   m_Layer: 0
   m_Name: GrapplingHookWeapon
   m_TagString: Untagged
@@ -108,7 +109,7 @@ MonoBehaviour:
   Mode: 1
   HitscanTargetLayers:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 24576
   HitscanMaxDistance: 100
   MinDamageCaused: 1000
   MaxDamageCaused: 1000
@@ -158,11 +159,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimControl: 3
   RotationMode: 0
-  WeaponRotationSpeed: 0
+  WeaponRotationSpeed: Infinity
   MinimumAngle: -180
   MaximumAngle: 180
   MinimumMagnitude: 0.2
-  ReticleType: 2
+  ReticleType: 0
   Reticle: {fileID: 1373789777524232, guid: 65207112181da7b41bee2bb13af8b883, type: 3}
   ReticleDistance: 0
   ReticleHeight: 0
@@ -171,16 +172,52 @@ MonoBehaviour:
   ReplaceMousePointer: 1
   MouseDeadZoneRadius: 0.5
   DisplayReticle: 1
-  MoveCameraTargetTowardsReticle: 0
+  MoveCameraTargetTowardsReticle: 1
   CameraTargetOffset: 0.3
   CameraTargetMaxDistance: 10
   CameraTargetSpeed: 5
-  Unrestricted3DAim: 0
+  Unrestricted3DAim: 1
   ReticleMovesWithSlopes: 0
   ReticleObstacleMask:
     serializedVersion: 2
     m_Bits: 9
   MaximumSlopeElevation: 50
+--- !u!114 &-7394562790483452303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281460348057383461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8b8043849359246a04382d3f9a5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetsMask:
+    serializedVersion: 2
+    m_Bits: 24576
+  ObstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  ScanRadius: 100
+  LineOfFireBoxcastSize: {x: 0.1, y: 0.1}
+  DurationBetweenScans: 0
+  DetectionOriginOffset: {x: 0, y: 0, z: 0}
+  RotationMode: 0
+  ApplyAutoAimAsLastDirection: 1
+  MoveCameraTarget: 1
+  CameraTargetDistance: 0.5
+  CameraTargetMaxDistance: 10
+  CameraTargetSpeed: 5
+  AimMarkerPrefab: {fileID: 0}
+  FirstTargetFoundFeedback: {fileID: 0}
+  NewTargetFoundFeedback: {fileID: 0}
+  NoMoreTargetsFeedback: {fileID: 0}
+  Target: {fileID: 0}
+  DrawDebugRadius: 1
+  OverlapMaximum: 10
+  MaxAngle: 180
 --- !u!1001 &4584489690789031262
 PrefabInstance:
   m_ObjectHideFlags: 0
