@@ -11,7 +11,11 @@ namespace ProgressionSystem.Scripts.Links
 
         private void Awake() { _movement = GetComponent<CharacterMovement>(); }
 
-        private void UpdateWalkSpeed() { _movement.WalkSpeed = WalkSpeed.Value; }
+        private void UpdateWalkSpeed()
+        {
+            _movement.WalkSpeed = WalkSpeed.Value;
+            _movement.ResetSpeed();
+        }
         private void OnEnable()
         {
             UpdateWalkSpeed();
