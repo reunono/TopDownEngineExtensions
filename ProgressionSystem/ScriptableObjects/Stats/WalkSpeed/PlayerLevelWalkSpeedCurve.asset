@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6ec8805fedad54a94ef260388e6c3b, type: 3}
+  m_Name: PlayerLevelWalkSpeedCurve
+  m_EditorClassIdentifier: 
+  LevelValueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 4
+      inSlope: 0.63780195
+      outSlope: 0.63780195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.036866363
+    - serializedVersion: 3
+      time: 100
+      value: 25
+      inSlope: 0.020483334
+      outSlope: 0.020483334
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.122119784
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DisplayIntValues: 0
+  ValueRepresents: Walk Speed

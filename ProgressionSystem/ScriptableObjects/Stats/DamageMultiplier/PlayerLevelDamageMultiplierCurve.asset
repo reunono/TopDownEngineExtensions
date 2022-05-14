@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6ec8805fedad54a94ef260388e6c3b, type: 3}
+  m_Name: PlayerLevelDamageMultiplierCurve
+  m_EditorClassIdentifier: 
+  LevelValueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.3101771
+      outSlope: 0.3101771
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.19072197
+    - serializedVersion: 3
+      time: 10.1737385
+      value: 2.8554409
+      inSlope: 0.027628835
+      outSlope: 0.027628835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09064882
+    - serializedVersion: 3
+      time: 100
+      value: 4
+      inSlope: 0.0045614336
+      outSlope: 0.0045614336
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15668203
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DisplayIntValues: 0
+  ValueRepresents: Damage Multiplier
