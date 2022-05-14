@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a76dbc77164e6c43a002ca8f6efe921, type: 3}
+  m_Name: PlayerWalkSpeedUpdater
+  m_EditorClassIdentifier: 
+  Level: {fileID: 11400000, guid: 778ed0cdce2dfff44b996c3dbe18da82, type: 2}
+  LevelValueCurve: {fileID: 11400000, guid: 9f3078b84ba30ed498aaead525b63e05, type: 2}
+  Variable: {fileID: 11400000, guid: fe44e3e463a8ab54c9a1268a4a2e2740, type: 2}
