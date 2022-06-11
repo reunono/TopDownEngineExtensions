@@ -10,6 +10,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
 * **AIDecisionPlayerIsInSameRoom**, _by 石田ぎがしー Gigacee_, an AI decision that returns true if the player is in one of the specified rooms, false otherwise.
 * **AI Performance Manager**, _by Force_ : A system used to disable AIs based on distance to the player for better performance
+* **Boomerang**, _by AlexanderGheorghe_ : a component that makes Projectile decelerate and return to the owner when it stops. works in both 2D and 3D. includes 3D demo and .unitypackage for easy installation
 * **Character8WayGridMovement**, _by @jcphlux_ : adds support for 8-way grid movement.
 * **CharacterDamageMultiplier**, _by AlexanderGheorghe_ : a collection of extension scripts that implement character-level damage multiplier. includes an example of pickable damage multiplier. requires adding _public virtual void ApplyDamageMultiplier(float multiplier) {}_ declaration to Weapon.cs
 * **CharacterInventoryWeaponChanger**, _by AlexanderGheorghe_ : this script allows you to use scroll wheel or number keys to change your weapon to any weapon from your MainInventory
