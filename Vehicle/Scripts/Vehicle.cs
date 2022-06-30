@@ -11,6 +11,7 @@ public class Vehicle : MonoBehaviour
     private GameObject _player;
     public UnityEvent OnEnableEvent;
     public UnityEvent OnDisableEvent;
+    private Health _health;
 
     private void Awake()
     {
@@ -18,10 +19,12 @@ public class Vehicle : MonoBehaviour
         _suspensions = GetComponentsInChildren<Suspension>(true);
         _vehicleController = GetComponent<VehicleController>();
         _initialLayer = gameObject.layer;
+        _health = GetComponent<Health>();
     }
 
     private void OnEnable()
     {
+        if (_health != null) _health.OnDeath += Disable;
         OnEnableEvent.Invoke();
         _player = LevelManager.Instance.Players[0].gameObject;
         _player.SetActive(false);
@@ -35,6 +38,7 @@ public class Vehicle : MonoBehaviour
     
     private void OnDisable()
     {
+        if (_health != null) _health.OnDeath -= Disable;
         OnDisableEvent.Invoke();
         gameObject.layer = _initialLayer;
         _rigidbody.isKinematic = true;
@@ -49,5 +53,10 @@ public class Vehicle : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Player1_Interact")) enabled = false;
+    }
+
+    private void Disable()
+    {
+        enabled = false;
     }
 }
