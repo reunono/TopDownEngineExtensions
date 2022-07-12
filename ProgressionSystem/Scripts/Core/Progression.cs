@@ -17,7 +17,7 @@ namespace ProgressionSystem.Scripts.Core
 
         private void UpdateLevel()
         {
-            while (Experience.Value >= LevelExperienceCurve.EvaluateInt(Level.Value + 1)) Level.Value++;
+            while (Experience.Value >= LevelExperienceCurve.EvaluateInt(Level.Value + 1) && Level.Value < LevelExperienceCurve.MaxLevel) Level.Value++;
             Progressed?.Invoke();
         }
 
