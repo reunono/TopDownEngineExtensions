@@ -10,7 +10,14 @@ namespace ProgressionSystem.Scripts.UI
         private MMProgressBar _bar;
         
         private void Awake() { _bar = GetComponent<MMProgressBar>(); }
-        private void UpdateBar() { _bar.UpdateBar(Progression.LevelExperience, 0, Progression.NextLevelExperience); }
+
+        private void UpdateBar()
+        {
+            if (Progression.NextLevelExperience > 0)
+                _bar.UpdateBar(Progression.LevelExperience, 0, Progression.NextLevelExperience);
+            else
+                _bar.SetBar01(1);
+        }
         private void OnEnable()
         {
             _bar.SetBar(Progression.LevelExperience, 0, Progression.NextLevelExperience);
