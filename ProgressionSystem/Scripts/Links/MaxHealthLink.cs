@@ -6,7 +6,7 @@ namespace ProgressionSystem.Scripts.Links
 {
     public class MaxHealthLink : MonoBehaviour
     {
-        [SerializeField] private IntVariable MaxHealth;
+        [SerializeField] private FloatVariable MaxHealth;
         [SerializeField] private bool ResetHealthToMaxHealthOnChange;
         private Health _health;
 
@@ -17,7 +17,7 @@ namespace ProgressionSystem.Scripts.Links
             var maxHealthDifference = MaxHealth.Value - _health.MaximumHealth;
             _health.MaximumHealth = MaxHealth.Value;
             if (ResetHealthToMaxHealthOnChange) _health.ResetHealthToMaxHealth();
-            else _health.GetHealth(maxHealthDifference, gameObject);
+            else _health.ReceiveHealth(maxHealthDifference, gameObject);
         }
 
         private void OnEnable()
