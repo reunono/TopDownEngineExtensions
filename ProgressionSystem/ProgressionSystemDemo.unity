@@ -207,6 +207,7 @@ MonoBehaviour:
   CurrentCheckpoint: {fileID: 0}
   PointsOfEntry: []
   IntroFadeDuration: 0.1
+  SpawnDelay: 0
   OutroFadeDuration: 0.1
   FaderID: 0
   FadeCurve:
@@ -1617,10 +1618,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 795418362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506026d41caa10e47a5b319d8df06102, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bf461c7c628f4a4197a00254305db16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntVariable: {fileID: 11400000, guid: f53cd3a2806b4f34f9924ac291ea75d6, type: 2}
+  FloatVariable: {fileID: 11400000, guid: f53cd3a2806b4f34f9924ac291ea75d6, type: 2}
   Offset: 0
   Prefix: 'Max Health: '
 --- !u!114 &795418365
