@@ -21,6 +21,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **GrapplingHook**, _by AlexanderGheorghe_, : 3D grappling hook implementation with [rope animation](https://youtu.be/tPtKNvifpj0)
 * **GridPathfinding**, _by AlexanderGheorghe_, : grid versions of CharacterPathfinder3D and CharacterPathfindToMouse3D
 * **HeldButtonZone**, _by Dougomite_ : a button activated zone for which the player needs to keep the button pressed for a certain duration to activate
+* **InvertedMeshConeOfVision2D**, _by AlexanderGheorghe_ : version of MMConeOfVision2D with inverted mesh (mesh is where the character doesn't have vision)
 * **MarbleCharacter**, _by AlexanderGheorghe_ : scripts that enable creating marble type characters. includes example character prefab
 * **MMFeedbackLootDrops**, _by Dougomite_ : an MMFeedback that spawns "loot" (item pickers or any object you want) in a certain radius at weighted chances
 * **MouseControls3D**, _by AlexanderGheorghe_ : a collection of extension scripts that implement Diablo-like mouse controls (double click to run, click and hold to make the character follow mouse position, click an enemy to pathfind to it and attack when in line of sight and in range). requires adding the _public float Range = 10f;_ declaration to Weapon.cs so the character knows when it is in range to attack, depending on the weapon he has equipped. includes unitypackage for easy installation and an example character prefab
