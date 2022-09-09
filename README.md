@@ -31,6 +31,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **Perspective**, _by AlexanderGheorghe_ : a collection of scripts that allows toggling between top down and first person perspectives. includes demo scene based on Loft3D and unitypackage
 * **PickableAbilities**, _by AlexanderGheorghe_ : PickableItem extension that allows configuring a list of abilities to be enabled on the picking character
 * **ProgressionSystem**, _by AlexanderGheorghe_ : a simple, extendable, scriptable object based progression system (get experience -> level up -> update stats). uses AnimationCurves for value management, as explained in [this video](https://youtu.be/Nc9x0LfvJhI)
+* **ProjectileHoming**, _by AlexanderGheorghe_ : a component that gets a target on spawn and rotates Projectile's direction towards the target every frame, stopping if it misses the target. works in both 2D and 3D
 * **ReferenceFrameCharacterMovement**, _by Necka_ : a specialized variant of the Character Movement ability that corrects for a reference frame camera
 * **RewiredIntegration**, _by Tony Li [Pixel Crushers]_ : support for the input solution Rewired, available on the Unity Asset Store.
 * **SpecificInvulnerabilityHealth**, _by AlexanderGheorghe_ : an extension of Health that calculates invulnerability per instigator GameObject (DamageOnTouch usually). this allows you to have overlapping damage on touch all affect your characters and count down invulnerability individually
