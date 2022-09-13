@@ -56,7 +56,12 @@ public class ProjectileHoming : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (!Application.isPlaying) _is3D = GetComponent<Collider>();
+        if (!Application.isPlaying)
+        {
+            _is3D = GetComponent<Collider>();
+            _projectile = GetComponent<Projectile>();
+        }
+        var projectileDirection = _projectile.Direction;
         float step;
         float start;
         var numberOfRays = NumberOfRays;
@@ -79,6 +84,6 @@ public class ProjectileHoming : MonoBehaviour
             DrawLine(-angle);
             DrawLine(angle);
         }
-        void DrawLine(float angle) => Gizmos.DrawRay(transform.position, (_is3D ? Quaternion.Euler(0, angle, 0) * transform.forward : Quaternion.Euler(0, 0, angle) * transform.right) * MaxDistance);
+        void DrawLine(float angle) => Gizmos.DrawRay(transform.position, (_is3D ? Quaternion.Euler(0, angle, 0) : Quaternion.Euler(0, 0, angle)) * projectileDirection * MaxDistance);
     }
 }
