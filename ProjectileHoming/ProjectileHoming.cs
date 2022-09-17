@@ -44,8 +44,8 @@ public class ProjectileHoming : MonoBehaviour
         Vector3 targetDirection;
         if (_is3D) targetDirection = _target.bounds.center - transform.position;
         else targetDirection = _target2D.bounds.center - transform.position;
-        _projectile.Direction = Vector3.RotateTowards(_projectile.Direction, targetDirection, _speed * Time.deltaTime, 0);
         if (Vector3.Angle(targetDirection, _projectile.Direction) > 90) enabled = false; // stops the homing behaviour if we missed the target
+        else _projectile.Direction = Vector3.RotateTowards(_projectile.Direction, targetDirection, _speed * Time.deltaTime, 0);
     }
 
     private void OnValidate()
