@@ -14,6 +14,14 @@ namespace TopDownEngineExtensions
         public MMInput.ButtonStates[] ShootAxes { get; protected set; }
         protected string[] _axesShoot;
 
+        public void ShootButtonDown(int handleWeaponID) => ShootButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonDown);
+        public void ShootButtonPressed(int handleWeaponID) => ShootButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonPressed);
+        public void ShootButtonUp(int handleWeaponID) => ShootButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonUp);
+        
+        public void ReloadButtonDown(int handleWeaponID) => ReloadButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonDown);
+        public void ReloadButtonPressed(int handleWeaponID) => ReloadButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonPressed);
+        public void ReloadButtonUp(int handleWeaponID) => ReloadButtons[handleWeaponID - 1].State.ChangeState(MMInput.ButtonStates.ButtonUp);
+
         protected override void Awake()
         {
             ShootButtons = new MMInput.IMButton[MaximumNumberOfWeapons];
