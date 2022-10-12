@@ -1,15 +1,11 @@
 ﻿using MoreMountains.TopDownEngine;
-using UnityEngine;
 
 namespace TankControls
 {
-    public class CharacterRotation : MonoBehaviour
+    public class CharacterRotation : CharacterAbility
     {
         public float Speed = 5;
-        private GameObject _model;
 
-        private void Awake() => _model = GetComponentInParent<Character>().CharacterModel;
-
-        private void Update() => _model.transform.Rotate(0.0f, Speed * Input.GetAxis("Horizontal"), 0.0f);
+        protected override void HandleInput() => _model.transform.Rotate(0.0f, Speed * _horizontalInput, 0.0f);
     }
 }
