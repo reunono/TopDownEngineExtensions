@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 2aa8dda757523ab48987a299ed931133
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ProjectileWeaponSpreadEvents: {fileID: 11400000, guid: aa239d6959427064da62d1727a81acd0,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
