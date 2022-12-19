@@ -5,6 +5,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 ## Contents
 
 * **AngleBasedAutoAim**, _by AlexanderGheorghe_ : extensions of WeaponAutoAim2D/3D that aim at the target with the smallest angle between the movement direction and the character-target direction instead of the closest target
+* **AStar Pathfinder3DAiAction**, _by ZUR1EL_ : Add this Ai Action to your enemy AiBrain to allow A* to control them.
 * **AIAction2DPathFinding**, _by Gabriel Elkind_ : an A* Pathfinding Project integration
 * **AIActionMoveTowardsPlayer2D**, _by Efreeti_ : makes the character move up to the specified MinimumDistance in the direction of the target.
 * **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
@@ -30,6 +31,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **PathfindingAvoidance**, _by septN_ : this CharacterPathfinder3D extension lets you have characters carve the navmesh and avoid each other. You'll need to add a NavMeshObstacle to your character(s), check "Carve" and uncheck "Carve Only Stationary"
 * **Perspective**, _by AlexanderGheorghe_ : a collection of scripts that allows toggling between top down and first person perspectives. includes demo scene based on Loft3D and unitypackage
 * **PickableAbilities**, _by AlexanderGheorghe_ : PickableItem extension that allows configuring a list of abilities to be enabled on the picking character
+* **PredictiveAim3D**, _by ZUR1EL_ : Add this Ai Action to your enemy AiBrain in replace of AiActionShoot3D to allow your enemy to lead targets.
 * **ProgressionSystem**, _by AlexanderGheorghe_ : a simple, extendable, scriptable object based progression system (get experience -> level up -> update stats). uses AnimationCurves for value management, as explained in [this video](https://youtu.be/Nc9x0LfvJhI)
 * **ProjectileHoming**, _by AlexanderGheorghe_ : a component that gets a target on spawn and rotates Projectile's direction towards the target every frame, stopping if it misses the target. works in both 2D and 3D
 * **ReferenceFrameCharacterMovement**, _by Necka_ : a specialized variant of the Character Movement ability that corrects for a reference frame camera
