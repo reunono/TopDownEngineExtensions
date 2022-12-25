@@ -4,91 +4,100 @@ using Pathfinding.RVO;
 using UnityEngine;
 
 
-namespace TopDownEngineExtensions.AStar.3D {
-public class CharacterPathfinder3DAStar : CharacterPathfinder3D
+namespace TopDownEngineExtensions.AStar.3D 
+{
+    public class CharacterPathfinder3DAStar : CharacterPathfinder3D
     {
         private RVOController _rvocontroller;
         private Seeker _seeker;
-        public bool showDebugMessages = false;
+        public bool showDebugMessages;
         public float slowRadius = 3f;
         public float stopRadius = 1f;
+        private bool _pathSearched;
+        private Vector3 _targetPos;
+        private float _slowRadiusSqr;
+        private float _maxMovementSpeed;
 
         protected override void Awake()
         {
             base.Awake();
             _seeker = gameObject.GetComponent<Seeker>();
             _rvocontroller = gameObject.GetComponent<RVOController>();
+            _targetPos = _character.transform.position;
         }
 
         /// <summary>
-        /// Determines the next path position for the agent. NextPosition will be zero if a path couldn't be found
+        ///     Determines the next path position for the agent. NextPosition will be zero if a path couldn't be found
         /// </summary>
         /// <param name="startingPos"></param>
         /// <param name="targetPos"></param>
         /// <returns></returns>
-        /// 
         protected override void DeterminePath(Vector3 startingPos, Vector3 targetPos)
         {
-            _seeker.StartPath(startingPos, targetPos, OnPathComplete);
+            if ((_targetPos - targetPos).sqrMagnitude > 0.001f)
+                _pathSearched = false;
+
+            if (!_pathSearched)
+            {
+                _seeker.StartPath(startingPos, targetPos, OnPathComplete);
+            }
+            else
+            {
+                 _maxMovementSpeed = _characterMovement.MovementSpeed *
+                                       _characterMovement.MovementSpeedMultiplier *
+                                       _characterMovement.ContextSpeedMultiplier;
+                _rvocontroller.SetTarget(Waypoints[NextWaypointIndex], _characterMovement.MovementSpeed,
+                    _maxMovementSpeed, Vector3.positiveInfinity);
+            }
         }
 
         public void OnPathComplete(Path p)
         {
-            if (p.error)
+            if (p.error && showDebugMessages)
             {
                 Debug.Log("No Valid Path Found");
             }
             else
             {
                 Waypoints = p.vectorPath.ToArray();
-                if (p.vectorPath.Count >= 2)
-                {
-                    NextWaypointIndex = 1;
-                }
+                _waypoints = Waypoints.Length;
+                if (p.vectorPath.Count >= 2) NextWaypointIndex = 1;
 
-                float maxMovementSpeed = _characterMovement.MovementSpeed *
-                                         _characterMovement.MovementSpeedMultiplier *
-                                         _characterMovement.ContextSpeedMultiplier;
+                _maxMovementSpeed = _characterMovement.MovementSpeed *
+                                       _characterMovement.MovementSpeedMultiplier *
+                                       _characterMovement.ContextSpeedMultiplier;
                 _rvocontroller.SetTarget(Waypoints[NextWaypointIndex], _characterMovement.MovementSpeed,
-                        maxMovementSpeed, Vector3.positiveInfinity);
+                    _maxMovementSpeed, Vector3.positiveInfinity);
+
+                _pathSearched = true;
             }
         }
 
+
+
         protected override void MoveController()
         {
-            if ((Target == null) || (NextWaypointIndex <= 0))
+            if (Target == null || NextWaypointIndex <= 0)
             {
                 _characterMovement.SetMovement(Vector2.zero);
                 return;
             }
 
-
-            float maxMovementSpeed = _characterMovement.MovementSpeed *
-                                     _characterMovement.MovementSpeedMultiplier *
-                                     _characterMovement.ContextSpeedMultiplier;
-
-            var distance = Vector3.Distance(this.transform.position, Target.position);
+            var distanceSqr = (transform.position - Target.position).sqrMagnitude;
             float targetSpeed;
 
-            if (distance <= stopRadius)
-            {
+            if (distanceSqr <= stopRadius * stopRadius)
                 targetSpeed = 0.0f;
-            }
-            else if (distance > slowRadius)
-            {
+            else if (distanceSqr > _slowRadiusSqr)
                 targetSpeed = _characterMovement.MovementSpeed;
-            }
             else
-            {
-                targetSpeed = _characterMovement.MovementSpeed * distance / slowRadius;
-            }
+                targetSpeed = _characterMovement.MovementSpeed * Mathf.Sqrt(distanceSqr) / slowRadius;
 
-            Vector3 targetPoint = Waypoints[NextWaypointIndex];
-            _rvocontroller.SetTarget(targetPoint, targetSpeed, _characterMovement.MovementSpeed,
-                Vector3.positiveInfinity);
-            Vector3 delta = _rvocontroller.CalculateMovementDelta(transform.position, Time.deltaTime);
+            var targetPoint = Waypoints[NextWaypointIndex];
+            _rvocontroller.SetTarget(targetPoint, targetSpeed, _characterMovement.MovementSpeed, Vector3.positiveInfinity);
+            var delta = _rvocontroller.CalculateMovementDelta(transform.position, Time.deltaTime);
 
-            _direction = delta / (Time.deltaTime * maxMovementSpeed);
+            _direction = delta / (Time.deltaTime * _maxMovementSpeed);
             _newMovement.x = _direction.x;
             _newMovement.y = _direction.z;
             _characterMovement.SetMovement(_newMovement);

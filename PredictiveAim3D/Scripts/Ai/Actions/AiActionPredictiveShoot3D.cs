@@ -8,11 +8,9 @@ namespace TopDownEngineExtensions.PredictiveAim3D.Scripts.Ai.Actions
     public class AiActionPredictiveShoot3D : AIActionShoot3D
     {
         public bool showDebugRays;
-        private float _shotForce = 1f;
         private Vector3 _lastProjectilePosition;
-        private Vector3 TargetPos => _brain.Target.position;
-
-        private Vector3 BulletStartPos
+        private Vector3 targetPos => _brain.Target.position;
+        private Vector3 bulletStartPos
         {
             get
             {
@@ -20,22 +18,12 @@ namespace TopDownEngineExtensions.PredictiveAim3D.Scripts.Ai.Actions
                 return _character.transform.position + ShootOffset;
             }
         }
-
         private GameObject _projectilePrefab;
-
-
+        
         //private Vector3 targetVelocity => m_targetUsesCharController ? _brain.Target.GetComponent<CharacterController>().velocity : _brain.Target.GetComponent<Rigidbody>().velocity; // Supporth either CharController or RB!
-        private Vector3 TargetVelocity => _brain.Target.GetComponent<CharacterController>().velocity;
-
-        private bool ShotObeysGravity => _projectilePrefab.GetComponent<Rigidbody>().useGravity;
-
-
-        public override void Initialization()
-        {
-            base.Initialization();
-            _projectilePrefab = TargetHandleWeaponAbility.CurrentWeapon.GetComponent<MMSimpleObjectPooler>().GameObjectToPool;
-            _shotForce = _projectilePrefab.GetComponent<Projectile>().Speed / 10;
-        }
+        private Vector3 targetVelocity => _brain.Target.GetComponent<CharacterController>().velocity;
+        private bool shotObeysGravity => _projectilePrefab.GetComponent<Rigidbody>().useGravity;
+        private float _shotForce = 1f;
 
 
         /// <summary>
@@ -44,7 +32,11 @@ namespace TopDownEngineExtensions.PredictiveAim3D.Scripts.Ai.Actions
         protected override void TestAimAtTarget()
         {
             if (!AimAtTarget || _brain.Target == null) return;
-
+            if (_projectilePrefab == null)
+            {
+                _projectilePrefab = TargetHandleWeaponAbility.CurrentWeapon.GetComponent<MMSimpleObjectPooler>().GameObjectToPool;
+            }
+            _shotForce = _projectilePrefab.GetComponent<Projectile>().Speed / 10;
             if (TargetHandleWeaponAbility.CurrentWeapon != null)
             {
                 if (_weaponAim == null) _weaponAim = TargetHandleWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<WeaponAim>();
@@ -59,13 +51,13 @@ namespace TopDownEngineExtensions.PredictiveAim3D.Scripts.Ai.Actions
             var aimFailure = !aimVector.HasValue;
             if (aimFailure) aimVector = _character.transform.position * _shotForce;
             //Debug.LogFormat(this, "{0} aimVector:{1}", this, aimVector);
-            if (showDebugRays) Debug.DrawRay(BulletStartPos, aimVector.Value, aimFailure ? Color.magenta : Color.red, 4f, false);
+            if (showDebugRays) Debug.DrawRay(bulletStartPos, aimVector.Value, aimFailure ? Color.magenta : Color.red, 4f, false);
             return aimVector.Value;
         }
 
         private Vector3? AimImpl()
         {
-            var aimVector = AimingUtilities.GetLaunchVector(TargetPos, TargetVelocity, BulletStartPos, _shotForce, ShotObeysGravity ? Physics.gravity : null);
+            var aimVector = AimingUtilities.GetLaunchVector(targetPos, targetVelocity, bulletStartPos, _shotForce, shotObeysGravity ? Physics.gravity : null);
             return aimVector.CheckForNaN() ? null : aimVector;
         }
     }
