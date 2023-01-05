@@ -4,7 +4,7 @@ using Pathfinding.RVO;
 using UnityEngine;
 
 
-namespace TopDownEngineExtensions.AStar.3D 
+namespace TopDownEngineExtensions.AStar3D 
 {
     public class CharacterPathfinder3DAStar : CharacterPathfinder3D
     {
