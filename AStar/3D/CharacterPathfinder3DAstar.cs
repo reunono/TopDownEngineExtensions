@@ -32,7 +32,7 @@ namespace TopDownEngineExtensions.AStar3D
         /// <param name="startingPos"></param>
         /// <param name="targetPos"></param>
         /// <returns></returns>
-        protected override void DeterminePath(Vector3 startingPos, Vector3 targetPos)
+        protected override void DeterminePath(Vector3 startingPos, Vector3 targetPos, bool ignoreDelay = false)
         {
             if ((_targetPos - targetPos).sqrMagnitude > 0.001f)
                 _pathSearched = false;
