@@ -14,7 +14,7 @@ public class ToggleCrouch : CharacterCrouch
 
     protected override void CheckExitCrouch()
     {
-        if ((!_controller.Grounded || !_crouch && !ForcedCrouch) && _controller.CanGoBackToOriginalSize()) ExitCrouch();
+        if ((!_controller.Grounded || !_crouch && !ForcedCrouch) && _controller.CanGoBackToOriginalSize() && _crouching) ExitCrouch();
     }
 
     protected override void ExitCrouch()
