@@ -12,7 +12,7 @@ namespace GrapplingHook
         private Coroutine _playAnimation;
 
         [Header("Testing")] 
-        [SerializeField] private Vector3 TestTarget;
+        [SerializeField] private Transform TestTarget;
         [MMInspectorButton("PlayAnimationTest")] 
         public bool PlayAnimationTestButton;
         [MMInspectorButton("StopAnimation")] 
@@ -25,7 +25,7 @@ namespace GrapplingHook
 
         private void PlayAnimationTest() { PlayAnimation(TestTarget); }
         
-        public void PlayAnimation(Vector3 target)
+        public void PlayAnimation(Transform target)
         {
             StopAnimation();
             _playAnimation = StartCoroutine(AnimateRope(target));
@@ -37,14 +37,14 @@ namespace GrapplingHook
             if (_playAnimation != null) StopCoroutine(_playAnimation);
         }
 
-        private IEnumerator AnimateRope(Vector3 targetPosition)
-        {
+        private IEnumerator AnimateRope(Transform target){
+            var targetPosition = target.position;
             _line.positionCount = Resolution;
             var percent = 0f;
             while (percent < 1)
             {
                 percent += Time.deltaTime / Duration;
-                SetPoints(targetPosition, percent);
+                SetPoints(target, percent);
                 yield return null;
             }
 
@@ -53,14 +53,15 @@ namespace GrapplingHook
             while (true)
             {
                 _line.SetPosition(0, transform.position);
+                _line.SetPosition(1, target.position);
                 yield return null;
             }
         }
 
-        private void SetPoints(Vector3 targetPosition, float percent)
+        private void SetPoints(Transform target, float percent)
         {
             var position = transform.position;
-            var ropeEnd = Vector3.Lerp(position, targetPosition, percent);
+            var ropeEnd = Vector3.Lerp(position, target.position, percent);
             var ropeVector = ropeEnd - position;
             var horizontalProjectionLength = Vector3.ProjectOnPlane(ropeVector, Vector3.up).magnitude;
             var verticalProjectionLength = Vector3.ProjectOnPlane(ropeVector.MMSetZ(0), Vector3.right).magnitude;
