@@ -6,11 +6,15 @@ public class VehicleController : MonoBehaviour
 	[SerializeField] private Vector3 CenterOfMass;
 	[Header("Acceleration")]
 	[SerializeField] private float AccelerationSpeed;
+	[Tooltip("How to apply the turning force relative to mass.")]
 	[SerializeField] private ForceMode AccelerationMode;
 	[SerializeField] private Vector3 AccelerationOrigin;
 	[Header("Turning")]
 	[SerializeField] private float TurnSpeed;
+	[Tooltip("How to apply the turning force relative to mass.")]
 	[SerializeField] private ForceMode TurnMode;
+	[Tooltip("Spin the vehicle when stationary, to allow tank turns.")]
+	[SerializeField] private bool TurnWhenStationary;
 	[Header("Traction")]
 	[SerializeField] private float NormalTractionConstant;
 	[SerializeField] private float DriftTractionConstant;
@@ -42,7 +46,7 @@ public class VehicleController : MonoBehaviour
 
 		// Turn
 		var forwardVelocity = transform.InverseTransformDirection(_rigidbody.velocity).z;
-		if (_axisV != 0 || Mathf.Abs(forwardVelocity) > 3)
+		if (_axisV != 0 || Mathf.Abs(forwardVelocity) > 3 || TurnWhenStationary)
 		{
 			var desiredTurn = TurnSpeed * _axisH * Time.fixedDeltaTime * Mathf.Sign(forwardVelocity) * Vector3.up;
 			_rigidbody.AddTorque(desiredTurn, TurnMode);
