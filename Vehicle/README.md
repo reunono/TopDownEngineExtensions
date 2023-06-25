@@ -1,8 +1,9 @@
 # Vehicle
 
-**Add drivable vehicles to a Top-Down Engine (TDE) scene.**
+**Add drivable vehicles to a Top-Down Engine (TDE) scene:**
 
-Enter, drive with wheel suspension forces, and exit damage-aware vehicles.
+* Enter, drive with wheel suspension forces, and exit damage-aware vehicles. 
+* Uses a primitive physics vehicle-force model, and gives an artificial feeling to driving.
 
 
 # Usage 
@@ -55,7 +56,7 @@ Enter, drive with wheel suspension forces, and exit damage-aware vehicles.
 * [Vehicle](Scripts/Vehicle.cs) Component - Hides player, activates vehicle forces and input controller, configures vehicle health
 * [Vehicle](Vehicle.prefab) Prefab - Preconfigured vehicle, drop one or more into a scene
 * [VehicleDemo](VehicleDemo.unity) Scene - Demo with Prefab and Scripts
-* [VehicleController](ThirdParty/Vehicle-Physics/Scripts/VehicleController.cs) (3rd party) Component - moves the vehicle in the chosen direction. Listens to user input, converts input to appropriate physics impulse.
+* [VehicleController](ThirdParty/Vehicle-Physics/Scripts/VehicleController.cs) (3rd party) Component - moves the vehicle in the chosen direction. Listens to user input, converts input to appropriate physics impulse. 
 * [Suspension](ThirdParty/Vehicle-Physics/Scripts/Suspension.cs) (3rd party) Component - lifts vehicle off ground. Required. Use multiple of these to balance a vehicle, e.g. one for each wheel of a car.
 
 
@@ -83,7 +84,15 @@ Enter, drive with wheel suspension forces, and exit damage-aware vehicles.
 
 # Tips
 
+### Stability
+
 For vehicle stability, this system is dependent configurations of its components. When the vehicle shudders, flips, and moves undesirably, check:
 
 * sizes and positions of its colliders (including inside DamageOnTouch) and Suspension objects: they should "fit" the model
 * Rigidbody mass, drag, angular drag should be non-zero
+
+### Vehicle Controller movement configuration
+
+To suddenly move, and ignore a vehicle's mass when moving forward or turning, change "Acceleration Mode" or "Turn Mode" respectively to "Velocity Change" from "Acceleration".
+
+To turn like a tank, rotating while stopped, enable "Turn When Stationary".
