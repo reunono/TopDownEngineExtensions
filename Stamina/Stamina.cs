@@ -104,6 +104,8 @@ namespace Stamina
 
         public void OnMMEvent(MMStateChangeEvent<CharacterStates.MovementStates> movementStateChange)
         {
+            if (movementStateChange.Target != gameObject)
+                return;
             if (movementStateChange.NewState != CharacterStates.MovementStates.Running) _running = false;
             switch (movementStateChange.NewState)
             {
