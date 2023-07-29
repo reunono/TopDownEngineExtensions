@@ -17,7 +17,6 @@ public class SaveIKHandlesPositionInPlayMode : MonoBehaviour
 	{
 		if (!PrefabUtility.IsPartOfPrefabAsset(gameObject) || string.IsNullOrWhiteSpace(AssetDatabase.GetAssetPath(gameObject))) return;
 		Prefab = AssetDatabase.GetAssetPath(gameObject);
-		Debug.Log(Prefab);
 		Name = name;
 		EditorUtility.SetDirty(gameObject);
 		PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject);
