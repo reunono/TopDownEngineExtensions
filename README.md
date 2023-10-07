@@ -17,8 +17,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
     Options include:
     * Diaginal Movement: When true allows for diaginal movement.
     * Ignore Cardinal obstacles: When true allows for diaginal movement even if blocked by Cardinal Direction Obstacles.
-    [!WARNING]
-    Ignore Cardinal obstacles is still a WIP for 3D movement but works for 2D movement.
+    *Ignore Cardinal obstacles is still a WIP for 3D movement but works for 2D movement.*
     * Ignore Cardinal obstacle Movement State: Configurable movement state to set the movement state to when moving through a cardinal direction obstacle. *ex. set to "Jumping" to set the state to "Jumping" when moving through a cardinal direction obstacle.*
 
     Report a bug or request a feature [here](https://github.com/jcphlux/TopDownEngineExtensions/issues)
