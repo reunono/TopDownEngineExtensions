@@ -23,7 +23,7 @@ namespace PhluxApps.TopDownEngine
             if (!ShouldInitialize) return;
             base.Initialization();
             AdvancedCharacterGridMovement acgm = gameObject.GetComponentInParent<Character>()?.FindAbility<AdvancedCharacterGridMovement>();
-            if (acgm != null && acgm.DiaginalMovement)
+            if (acgm != null && acgm.DiagonalMovement)
             {
                 _directions = 8;
                 _raycastDirections2D = _raycastDirections2D.Concat(new[] { Vector2.up + Vector2.left, Vector2.up + Vector2.right, Vector2.down + Vector2.left, Vector2.down + Vector2.right }).ToArray();

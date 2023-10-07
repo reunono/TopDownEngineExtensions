@@ -16,10 +16,10 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **AdvancedCharacterGridMovement**, _by [JCPhlux](https://github.com/jcphlux)_ : Inhanced version of CharacterGridMovement that allows for more control over the movement of the character. Single script that works for both 2D and 3D.
     Options include:
     * Diaginal Movement: When true allows for diaginal movement.
-    * Ignore Cardinal Obstacles: When true allows for diaginal movement even if blocked by Cardnial Direction Obsticles.
+    * Ignore Cardinal obstacles: When true allows for diaginal movement even if blocked by Cardinal Direction Obstacles.
     [!WARNING]
-    Ignore Cardinal Obstacles is still a WIP for 3D movement but works for 2D movement.
-    * Ignore Cardinal Obstacle Movement State: Configurable movement state to set the movement state to when moving through a cardinal direction obstacle. *ex. set to "Jumping" to set the state to "Jumping" when moving through a cardinal direction obstacle.*
+    Ignore Cardinal obstacles is still a WIP for 3D movement but works for 2D movement.
+    * Ignore Cardinal obstacle Movement State: Configurable movement state to set the movement state to when moving through a cardinal direction obstacle. *ex. set to "Jumping" to set the state to "Jumping" when moving through a cardinal direction obstacle.*
 
     Report a bug or request a feature [here](https://github.com/jcphlux/TopDownEngineExtensions/issues)
 
@@ -40,7 +40,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **MultiInventoryDetails**, _by men8_ : an addon to handle all active inventories on scene. See [this repo](https://github.com/men8/MultiInventoryDetails) for more info.
 * **MultipleKeyOperatedZone**, _by AlexanderGheorghe_ : extension of KeyOperatedZone that allows for requiring multiple keys. useful for trading a number of inventory items for something, for example when used in conjunction with InventoryEngineChest for setting up a simple shop system, where the keys are coins
 * **MultipleWeapons**, _by AlexanderGheorghe_ : two scripts, extensions of CharacterHandleWeapon and InputManager that go together to allow you to have your characters handle any number of weapons you want at once, from 0 to 1000000, the possibilities are infinite! includes an InputManager.asset with already configured bindings for the second weapon reload and third weapon input (2, 3 for reloading second and third weapon, middle mouse for shooting the third weapon)
-* **PathfindingAvoidance**, _by septN_ : this CharacterPathfinder3D extension lets you have characters carve the navmesh and avoid each other. You'll need to add a NavMeshObstacle to your character(s), check "Carve" and uncheck "Carve Only Stationary"
+* **PathfindingAvoidance**, _by septN_ : this CharacterPathfinder3D extension lets you have characters carve the navmesh and avoid each other. You'll need to add a NavMeshobstacle to your character(s), check "Carve" and uncheck "Carve Only Stationary"
 * **Perspective**, _by AlexanderGheorghe_ : a collection of scripts that allows toggling between top down and first person perspectives. includes demo scene based on Loft3D and unitypackage
 * **PickableAbilities**, _by AlexanderGheorghe_ : PickableItem extension that allows configuring a list of abilities to be enabled on the picking character
 * **PredictiveAim3D**, _by ZUR1EL_ : Add this Ai Action to your enemy AiBrain in replace of AiActionShoot3D to allow your enemy to lead targets.

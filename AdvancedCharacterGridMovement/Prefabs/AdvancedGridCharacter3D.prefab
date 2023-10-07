@@ -244,7 +244,7 @@ MonoBehaviour:
   RightOneCellButton: 0
   UpOneCellButton: 0
   DownOneCellButton: 0
-  DiaginalMovement: 1
+  DiagonalMovement: 1
   IgnoreCardinalObstacles: 0
   IgnoreCardinalObstacleMovementState: 9
   UpLeftButton: 0

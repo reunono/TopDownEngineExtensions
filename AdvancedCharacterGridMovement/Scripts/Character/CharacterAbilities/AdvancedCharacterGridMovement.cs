@@ -15,14 +15,14 @@ namespace PhluxApps.TopDownEngine
     [AddComponentMenu("TopDown Engine/Character/Abilities/Advanced Character Grid Movement")]
     public class AdvancedCharacterGridMovement : CharacterGridMovement
     {
-        public enum GridDiaginalDirections
+        public enum GridDiagonalDirections
         { None, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight }
 
         [Header("Advanced Movement")]
 
-        /// Allow diaginal movement
-        [Tooltip("allow diaginal movement")]
-        public bool DiaginalMovement = false;
+        /// Allow diagonal movement
+        [Tooltip("allow diagonal movement")]
+        public bool DiagonalMovement = false;
 
         /// Ignore collisions with cardinal obstacles when moving diaginally
         [Tooltip("Ignore collisions with cardinal obstacles when moving diaginally")]
@@ -83,11 +83,11 @@ namespace PhluxApps.TopDownEngine
 
         protected RaycastHit _cardinalRaycast;
 
-        protected GridDiaginalDirections _inputDiaginalDirection;
-        protected GridDiaginalDirections _currentDiaginalDirection = GridDiaginalDirections.Up;
-        protected GridDiaginalDirections _bufferedDiaginalDirection;
-        protected GridDiaginalDirections _newDiaginalDirection;
-        protected GridDiaginalDirections _fallbackDiaginalDirection;
+        protected GridDiagonalDirections _inputDiagonalDirection;
+        protected GridDiagonalDirections _currentDiagonalDirection = GridDiagonalDirections.Up;
+        protected GridDiagonalDirections _bufferedDiagonalDirection;
+        protected GridDiagonalDirections _newDiagonalDirection;
+        protected GridDiagonalDirections _fallbackDiagonalDirection;
 
         protected bool _hasDiagonalMovement = false;
         protected bool _isIgnoringCardinalObstacles = false;
@@ -160,7 +160,7 @@ namespace PhluxApps.TopDownEngine
         {
             base.Initialization();
 
-            _newDiaginalDirection = GridDiaginalDirections.None;
+            _newDiagonalDirection = GridDiagonalDirections.None;
             _currentDirection = GridDirections.None;
             if (DimensionMode == DimensionModes.TwoD)
             {
@@ -200,71 +200,71 @@ namespace PhluxApps.TopDownEngine
             // if we're not pressing any direction, we stop
             if (Mathf.Abs(_horizontalMovement) <= IdleThreshold && Mathf.Abs(_verticalMovement) <= IdleThreshold)
             {
-                Stop(_newDiaginalDirection);
-                _newDiaginalDirection = GridDiaginalDirections.None;
-                _fallbackDiaginalDirection = GridDiaginalDirections.None;
+                Stop(_newDiagonalDirection);
+                _newDiagonalDirection = GridDiagonalDirections.None;
+                _fallbackDiagonalDirection = GridDiagonalDirections.None;
                 _inputMovement = Vector3.zero;
             }
 
-            _hasDiagonalMovement = DiaginalMovement && _verticalMovement != 0f && _horizontalMovement != 0f;
+            _hasDiagonalMovement = DiagonalMovement && _verticalMovement != 0f && _horizontalMovement != 0f;
 
             // if we're pressing a direction for the first time, it becomes our new direction
             if (!_hasDiagonalMovement)
             {
-                if ((_horizontalMovement < 0f) && !_leftPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.Left; _inputMovement = Vector3.left; }
-                if ((_horizontalMovement > 0f) && !_rightPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.Right; _inputMovement = Vector3.right; }
-                if ((_verticalMovement < 0f) && !_downPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.Down; _inputMovement = Vector3.down; }
-                if ((_verticalMovement > 0f) && !_upPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.Up; _inputMovement = Vector3.up; }
+                if ((_horizontalMovement < 0f) && !_leftPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.Left; _inputMovement = Vector3.left; }
+                if ((_horizontalMovement > 0f) && !_rightPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.Right; _inputMovement = Vector3.right; }
+                if ((_verticalMovement < 0f) && !_downPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.Down; _inputMovement = Vector3.down; }
+                if ((_verticalMovement > 0f) && !_upPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.Up; _inputMovement = Vector3.up; }
             }
             else
             {
-                if ((_verticalMovement < 0f) && (_horizontalMovement < 0f) && !_downLeftPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.DownLeft; _inputMovement = Vector3.down + Vector3.left; }
-                if ((_verticalMovement < 0f) && (_horizontalMovement > 0f) && !_downRightPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.DownRight; _inputMovement = Vector3.down + Vector3.right; }
-                if ((_verticalMovement > 0f) && (_horizontalMovement < 0f) && !_upLeftPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.UpLeft; _inputMovement = Vector3.up + Vector3.left; }
-                if ((_verticalMovement > 0f) && (_horizontalMovement > 0f) && !_upRightPressedLastFrame) { _newDiaginalDirection = GridDiaginalDirections.UpRight; _inputMovement = Vector3.up + Vector3.right; }
+                if ((_verticalMovement < 0f) && (_horizontalMovement < 0f) && !_downLeftPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.DownLeft; _inputMovement = Vector3.down + Vector3.left; }
+                if ((_verticalMovement < 0f) && (_horizontalMovement > 0f) && !_downRightPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.DownRight; _inputMovement = Vector3.down + Vector3.right; }
+                if ((_verticalMovement > 0f) && (_horizontalMovement < 0f) && !_upLeftPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.UpLeft; _inputMovement = Vector3.up + Vector3.left; }
+                if ((_verticalMovement > 0f) && (_horizontalMovement > 0f) && !_upRightPressedLastFrame) { _newDiagonalDirection = GridDiagonalDirections.UpRight; _inputMovement = Vector3.up + Vector3.right; }
             }
 
             // if we were pressing a direction, and have just released it, we'll look for an other direction
             if (((_horizontalMovement == 0f) && (_leftPressedLastFrame || _rightPressedLastFrame)) ||
                ((_verticalMovement == 0f) && (_downPressedLastFrame || _upPressedLastFrame)) ||
                (_verticalMovement == 0f && _horizontalMovement == 0f && (_downLeftPressedLastFrame || _downRightPressedLastFrame || _upLeftPressedLastFrame || _upRightPressedLastFrame)))
-            { _newDiaginalDirection = GridDiaginalDirections.None; }
+            { _newDiagonalDirection = GridDiagonalDirections.None; }
 
             // if at this point we have no direction, we take any pressed one
-            if (_newDiaginalDirection == GridDiaginalDirections.None)
+            if (_newDiagonalDirection == GridDiagonalDirections.None)
             {
                 if (!_hasDiagonalMovement)
                 {
-                    if (_horizontalMovement < 0f) { _newDiaginalDirection = GridDiaginalDirections.Left; _inputMovement = Vector3.left; }
-                    if (_horizontalMovement > 0f) { _newDiaginalDirection = GridDiaginalDirections.Right; _inputMovement = Vector3.right; }
-                    if (_verticalMovement < 0f) { _newDiaginalDirection = GridDiaginalDirections.Down; _inputMovement = Vector3.down; }
-                    if (_verticalMovement > 0f) { _newDiaginalDirection = GridDiaginalDirections.Up; _inputMovement = Vector3.up; }
+                    if (_horizontalMovement < 0f) { _newDiagonalDirection = GridDiagonalDirections.Left; _inputMovement = Vector3.left; }
+                    if (_horizontalMovement > 0f) { _newDiagonalDirection = GridDiagonalDirections.Right; _inputMovement = Vector3.right; }
+                    if (_verticalMovement < 0f) { _newDiagonalDirection = GridDiagonalDirections.Down; _inputMovement = Vector3.down; }
+                    if (_verticalMovement > 0f) { _newDiagonalDirection = GridDiagonalDirections.Up; _inputMovement = Vector3.up; }
                 }
                 else
                 {
-                    if ((_verticalMovement < 0f) && (_horizontalMovement < 0f)) { _newDiaginalDirection = GridDiaginalDirections.DownLeft; _inputMovement = Vector3.down + Vector3.left; }
-                    if ((_verticalMovement < 0f) && (_horizontalMovement > 0f)) { _newDiaginalDirection = GridDiaginalDirections.DownRight; _inputMovement = Vector3.down + Vector3.right; }
-                    if ((_verticalMovement > 0f) && (_horizontalMovement < 0f)) { _newDiaginalDirection = GridDiaginalDirections.UpLeft; _inputMovement = Vector3.up + Vector3.left; }
-                    if ((_verticalMovement > 0f) && (_horizontalMovement > 0f)) { _newDiaginalDirection = GridDiaginalDirections.UpRight; _inputMovement = Vector3.up + Vector3.right; }
+                    if ((_verticalMovement < 0f) && (_horizontalMovement < 0f)) { _newDiagonalDirection = GridDiagonalDirections.DownLeft; _inputMovement = Vector3.down + Vector3.left; }
+                    if ((_verticalMovement < 0f) && (_horizontalMovement > 0f)) { _newDiagonalDirection = GridDiagonalDirections.DownRight; _inputMovement = Vector3.down + Vector3.right; }
+                    if ((_verticalMovement > 0f) && (_horizontalMovement < 0f)) { _newDiagonalDirection = GridDiagonalDirections.UpLeft; _inputMovement = Vector3.up + Vector3.left; }
+                    if ((_verticalMovement > 0f) && (_horizontalMovement > 0f)) { _newDiagonalDirection = GridDiagonalDirections.UpRight; _inputMovement = Vector3.up + Vector3.right; }
                 }
             }
 
             if (_hasDiagonalMovement && (_leftPressedLastFrame || _rightPressedLastFrame || _downPressedLastFrame || _upPressedLastFrame))
             {
-                if (_leftPressedLastFrame) { _fallbackDiaginalDirection = (_newDiaginalDirection == GridDiaginalDirections.DownLeft) ? GridDiaginalDirections.Down : GridDiaginalDirections.Up; }
-                if (_rightPressedLastFrame) { _fallbackDiaginalDirection = (_newDiaginalDirection == GridDiaginalDirections.DownRight) ? GridDiaginalDirections.Down : GridDiaginalDirections.Up; }
-                if (_downPressedLastFrame) { _fallbackDiaginalDirection = (_newDiaginalDirection == GridDiaginalDirections.DownLeft) ? GridDiaginalDirections.Left : GridDiaginalDirections.Right; }
-                if (_upPressedLastFrame) { _fallbackDiaginalDirection = (_newDiaginalDirection == GridDiaginalDirections.UpLeft) ? GridDiaginalDirections.Left : GridDiaginalDirections.Right; }
+                if (_leftPressedLastFrame) { _fallbackDiagonalDirection = (_newDiagonalDirection == GridDiagonalDirections.DownLeft) ? GridDiagonalDirections.Down : GridDiagonalDirections.Up; }
+                if (_rightPressedLastFrame) { _fallbackDiagonalDirection = (_newDiagonalDirection == GridDiagonalDirections.DownRight) ? GridDiagonalDirections.Down : GridDiagonalDirections.Up; }
+                if (_downPressedLastFrame) { _fallbackDiagonalDirection = (_newDiagonalDirection == GridDiagonalDirections.DownLeft) ? GridDiagonalDirections.Left : GridDiagonalDirections.Right; }
+                if (_upPressedLastFrame) { _fallbackDiagonalDirection = (_newDiagonalDirection == GridDiagonalDirections.UpLeft) ? GridDiagonalDirections.Left : GridDiagonalDirections.Right; }
             }
 
-            _inputDiaginalDirection = _newDiaginalDirection;
+            _inputDiagonalDirection = _newDiagonalDirection;
 
             // we store our presses for next frame
             _leftPressedLastFrame = !_hasDiagonalMovement && (_horizontalMovement < 0f);
             _rightPressedLastFrame = !_hasDiagonalMovement && (_horizontalMovement > 0f);
             _downPressedLastFrame = !_hasDiagonalMovement && (_verticalMovement < 0f);
             _upPressedLastFrame = !_hasDiagonalMovement && (_verticalMovement > 0f);
-            if (DiaginalMovement)
+            if (DiagonalMovement)
             {
                 _downLeftPressedLastFrame = (_verticalMovement < 0f) && (_horizontalMovement < 0f);
                 _downRightPressedLastFrame = (_verticalMovement < 0f) && (_horizontalMovement > 0f);
@@ -277,13 +277,13 @@ namespace PhluxApps.TopDownEngine
         /// Stops the character and has it face the specified direction
         /// </summary>
         /// <param name="direction"></param>
-        public virtual void Stop(GridDiaginalDirections direction)
+        public virtual void Stop(GridDiagonalDirections direction)
         {
-            if (direction == GridDiaginalDirections.None)
+            if (direction == GridDiagonalDirections.None)
             {
                 return;
             }
-            _bufferedDiaginalDirection = direction;
+            _bufferedDiagonalDirection = direction;
             _stopBuffered = true;
         }
 
@@ -292,7 +292,7 @@ namespace PhluxApps.TopDownEngine
         /// </summary>
 		protected override void ApplyAcceleration()
         {
-            if ((_currentDiaginalDirection != GridDiaginalDirections.None) && (CurrentSpeed < MaximumSpeed * MaximumSpeedMultiplier))
+            if ((_currentDiagonalDirection != GridDiagonalDirections.None) && (CurrentSpeed < MaximumSpeed * MaximumSpeedMultiplier))
             {
                 CurrentSpeed = CurrentSpeed + Acceleration * AccelerationMultiplier * Time.deltaTime;
                 CurrentSpeed = Mathf.Clamp(CurrentSpeed, 0f, MaximumSpeed * MaximumSpeedMultiplier);
@@ -343,10 +343,10 @@ namespace PhluxApps.TopDownEngine
                 }
 
                 // if we don't have a direction anymore
-                if (_bufferedDiaginalDirection == GridDiaginalDirections.None)
+                if (_bufferedDiagonalDirection == GridDiagonalDirections.None)
                 {
-                    _currentDiaginalDirection = GridDiaginalDirections.None;
-                    _bufferedDiaginalDirection = GridDiaginalDirections.None;
+                    _currentDiagonalDirection = GridDiagonalDirections.None;
+                    _bufferedDiagonalDirection = GridDiagonalDirections.None;
                     _agentMoving = false;
                     CurrentSpeed = 0;
 
@@ -360,49 +360,49 @@ namespace PhluxApps.TopDownEngine
                 // cardinal direction that doesn't have an obstacle
                 if (_hasDiagonalMovement)
                 {
-                    if ((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) && ((DetectedObstacleUpLeft != null && (_controller.DetectedObstacleUp == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null))))
+                    if ((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) && ((DetectedObstacleUpLeft != null && (_controller.DetectedObstacleUp == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleLeft != null))))
                     {
-                        _currentDiaginalDirection = (_controller.DetectedObstacleUp == null && _controller.DetectedObstacleLeft == null)
-                            ? (_fallbackDiaginalDirection != GridDiaginalDirections.None) ? _fallbackDiaginalDirection : (MMMaths.RollADice(2) == 1) ? GridDiaginalDirections.Left : GridDiaginalDirections.Up
-                            : (_controller.DetectedObstacleUp == null) ? GridDiaginalDirections.Up : GridDiaginalDirections.Left;
+                        _currentDiagonalDirection = (_controller.DetectedObstacleUp == null && _controller.DetectedObstacleLeft == null)
+                            ? (_fallbackDiagonalDirection != GridDiagonalDirections.None) ? _fallbackDiagonalDirection : (MMMaths.RollADice(2) == 1) ? GridDiagonalDirections.Left : GridDiagonalDirections.Up
+                            : (_controller.DetectedObstacleUp == null) ? GridDiagonalDirections.Up : GridDiagonalDirections.Left;
                     }
-                    else if ((_currentDiaginalDirection == GridDiaginalDirections.UpRight) && ((DetectedObstacleUpRight != null && (_controller.DetectedObstacleUp == null || _controller.DetectedObstacleRight == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null))))
+                    else if ((_currentDiagonalDirection == GridDiagonalDirections.UpRight) && ((DetectedObstacleUpRight != null && (_controller.DetectedObstacleUp == null || _controller.DetectedObstacleRight == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleUp != null || _controller.DetectedObstacleRight != null))))
                     {
-                        _currentDiaginalDirection = _controller.DetectedObstacleUp == null && _controller.DetectedObstacleRight == null
-                            ? (_fallbackDiaginalDirection != GridDiaginalDirections.None) ? _fallbackDiaginalDirection : (MMMaths.RollADice(2) == 1) ? GridDiaginalDirections.Right : GridDiaginalDirections.Up
-                            : (_controller.DetectedObstacleUp == null) ? GridDiaginalDirections.Up : GridDiaginalDirections.Right;
+                        _currentDiagonalDirection = _controller.DetectedObstacleUp == null && _controller.DetectedObstacleRight == null
+                            ? (_fallbackDiagonalDirection != GridDiagonalDirections.None) ? _fallbackDiagonalDirection : (MMMaths.RollADice(2) == 1) ? GridDiagonalDirections.Right : GridDiagonalDirections.Up
+                            : (_controller.DetectedObstacleUp == null) ? GridDiagonalDirections.Up : GridDiagonalDirections.Right;
                     }
-                    else if ((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) && ((DetectedObstacleDownLeft != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null))))
+                    else if ((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) && ((DetectedObstacleDownLeft != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null))))
                     {
-                        _currentDiaginalDirection = (_controller.DetectedObstacleUp == null && _controller.DetectedObstacleRight == null)
-                            ? (_fallbackDiaginalDirection != GridDiaginalDirections.None) ? _fallbackDiaginalDirection : (MMMaths.RollADice(2) == 1) ? GridDiaginalDirections.Right : GridDiaginalDirections.Up
-                            : (_controller.DetectedObstacleUp == null) ? GridDiaginalDirections.Up : GridDiaginalDirections.Right;
+                        _currentDiagonalDirection = (_controller.DetectedObstacleUp == null && _controller.DetectedObstacleRight == null)
+                            ? (_fallbackDiagonalDirection != GridDiagonalDirections.None) ? _fallbackDiagonalDirection : (MMMaths.RollADice(2) == 1) ? GridDiagonalDirections.Right : GridDiagonalDirections.Up
+                            : (_controller.DetectedObstacleUp == null) ? GridDiagonalDirections.Up : GridDiagonalDirections.Right;
                     }
-                    else if ((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) && ((DetectedObstacleDownLeft != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null))))
+                    else if ((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) && ((DetectedObstacleDownLeft != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleLeft == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleLeft != null))))
                     {
-                        _currentDiaginalDirection = (_controller.DetectedObstacleDown == null && _controller.DetectedObstacleLeft == null)
-                            ? (_fallbackDiaginalDirection != GridDiaginalDirections.None) ? _fallbackDiaginalDirection : (MMMaths.RollADice(2) == 1) ? GridDiaginalDirections.Left : GridDiaginalDirections.Down
-                            : (_controller.DetectedObstacleDown == null) ? GridDiaginalDirections.Down : GridDiaginalDirections.Left;
+                        _currentDiagonalDirection = (_controller.DetectedObstacleDown == null && _controller.DetectedObstacleLeft == null)
+                            ? (_fallbackDiagonalDirection != GridDiagonalDirections.None) ? _fallbackDiagonalDirection : (MMMaths.RollADice(2) == 1) ? GridDiagonalDirections.Left : GridDiagonalDirections.Down
+                            : (_controller.DetectedObstacleDown == null) ? GridDiagonalDirections.Down : GridDiagonalDirections.Left;
                     }
-                    else if ((_currentDiaginalDirection == GridDiaginalDirections.DownRight) && ((DetectedObstacleDownRight != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleRight == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null))))
+                    else if ((_currentDiagonalDirection == GridDiagonalDirections.DownRight) && ((DetectedObstacleDownRight != null && (_controller.DetectedObstacleDown == null || _controller.DetectedObstacleRight == null)) || (!IgnoreCardinalObstacles && (_controller.DetectedObstacleDown != null || _controller.DetectedObstacleRight != null))))
                     {
-                        _currentDiaginalDirection = _controller.DetectedObstacleDown == null && _controller.DetectedObstacleRight == null
-                            ? (_fallbackDiaginalDirection != GridDiaginalDirections.None) ? _fallbackDiaginalDirection : (MMMaths.RollADice(2) == 1) ? GridDiaginalDirections.Right : GridDiaginalDirections.Down
-                            : (_controller.DetectedObstacleDown == null) ? GridDiaginalDirections.Down : GridDiaginalDirections.Right;
+                        _currentDiagonalDirection = _controller.DetectedObstacleDown == null && _controller.DetectedObstacleRight == null
+                            ? (_fallbackDiagonalDirection != GridDiagonalDirections.None) ? _fallbackDiagonalDirection : (MMMaths.RollADice(2) == 1) ? GridDiagonalDirections.Right : GridDiagonalDirections.Down
+                            : (_controller.DetectedObstacleDown == null) ? GridDiagonalDirections.Down : GridDiagonalDirections.Right;
                     }
                 }
 
                 // we check if we can move in the selected direction
-                if (((_currentDiaginalDirection == GridDiaginalDirections.Left) && (_controller.DetectedObstacleLeft != null))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.Right) && (_controller.DetectedObstacleRight != null))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.Up) && (_controller.DetectedObstacleUp != null))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.Down) && (_controller.DetectedObstacleDown != null))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) && ((DetectedObstacleUpLeft != null) || ((DetectedObstacleUpLeft == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleUp != null) || (_controller.DetectedObstacleLeft != null)))))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.UpRight) && ((DetectedObstacleUpRight != null) || ((DetectedObstacleUpRight == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleUp != null) || (_controller.DetectedObstacleRight != null)))))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) && ((DetectedObstacleDownLeft != null) || ((DetectedObstacleDownLeft == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleDown != null) || (_controller.DetectedObstacleLeft != null)))))
-                    || ((_currentDiaginalDirection == GridDiaginalDirections.DownRight) && ((DetectedObstacleDownRight != null) || ((DetectedObstacleDownRight == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleDown != null) || (_controller.DetectedObstacleRight != null))))))
+                if (((_currentDiagonalDirection == GridDiagonalDirections.Left) && (_controller.DetectedObstacleLeft != null))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.Right) && (_controller.DetectedObstacleRight != null))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.Up) && (_controller.DetectedObstacleUp != null))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.Down) && (_controller.DetectedObstacleDown != null))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) && ((DetectedObstacleUpLeft != null) || ((DetectedObstacleUpLeft == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleUp != null) || (_controller.DetectedObstacleLeft != null)))))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.UpRight) && ((DetectedObstacleUpRight != null) || ((DetectedObstacleUpRight == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleUp != null) || (_controller.DetectedObstacleRight != null)))))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) && ((DetectedObstacleDownLeft != null) || ((DetectedObstacleDownLeft == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleDown != null) || (_controller.DetectedObstacleLeft != null)))))
+                    || ((_currentDiagonalDirection == GridDiagonalDirections.DownRight) && ((DetectedObstacleDownRight != null) || ((DetectedObstacleDownRight == null) && !IgnoreCardinalObstacles && ((_controller.DetectedObstacleDown != null) || (_controller.DetectedObstacleRight != null))))))
                 {
-                    _currentDiaginalDirection = _bufferedDiaginalDirection;
+                    _currentDiagonalDirection = _bufferedDiagonalDirection;
 
                     GridManager.Instance.SetLastPosition(this.gameObject, GridManager.Instance.WorldToCellCoordinates(_endWorldPosition));
                     GridManager.Instance.SetNextPosition(this.gameObject, GridManager.Instance.WorldToCellCoordinates(_endWorldPosition));
@@ -411,16 +411,16 @@ namespace PhluxApps.TopDownEngine
                 }
 
                 // we check if we can move in the selected direction
-                if (((_bufferedDiaginalDirection == GridDiaginalDirections.Left) && (_controller.DetectedObstacleLeft == null))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.Right) && (_controller.DetectedObstacleRight == null))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.Up) && (_controller.DetectedObstacleUp == null))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.Down) && (_controller.DetectedObstacleDown == null))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.UpLeft) && (DetectedObstacleUpLeft == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleUp == null) && (_controller.DetectedObstacleLeft == null))))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.UpRight) && (DetectedObstacleUpRight == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleUp == null) && (_controller.DetectedObstacleRight == null))))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.DownLeft) && (DetectedObstacleDownLeft == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleDown == null) && (_controller.DetectedObstacleLeft == null))))
-                    || ((_bufferedDiaginalDirection == GridDiaginalDirections.DownRight) && (DetectedObstacleDownRight == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleDown == null) && (_controller.DetectedObstacleRight == null)))))
+                if (((_bufferedDiagonalDirection == GridDiagonalDirections.Left) && (_controller.DetectedObstacleLeft == null))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.Right) && (_controller.DetectedObstacleRight == null))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.Up) && (_controller.DetectedObstacleUp == null))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.Down) && (_controller.DetectedObstacleDown == null))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.UpLeft) && (DetectedObstacleUpLeft == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleUp == null) && (_controller.DetectedObstacleLeft == null))))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.UpRight) && (DetectedObstacleUpRight == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleUp == null) && (_controller.DetectedObstacleRight == null))))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.DownLeft) && (DetectedObstacleDownLeft == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleDown == null) && (_controller.DetectedObstacleLeft == null))))
+                    || ((_bufferedDiagonalDirection == GridDiagonalDirections.DownRight) && (DetectedObstacleDownRight == null) && (IgnoreCardinalObstacles || ((_controller.DetectedObstacleDown == null) && (_controller.DetectedObstacleRight == null)))))
                 {
-                    _currentDiaginalDirection = _bufferedDiaginalDirection;
+                    _currentDiagonalDirection = _bufferedDiagonalDirection;
                 }
 
                 // we compute and move towards our new destination
@@ -431,8 +431,8 @@ namespace PhluxApps.TopDownEngine
                 if (GridManager.Instance.CellIsOccupied(TargetGridPosition))
                 {
                     _movingToNextGridUnit = false;
-                    _currentDiaginalDirection = GridDiaginalDirections.None;
-                    _bufferedDiaginalDirection = GridDiaginalDirections.None;
+                    _currentDiagonalDirection = GridDiagonalDirections.None;
+                    _bufferedDiagonalDirection = GridDiagonalDirections.None;
                     _agentMoving = false;
                     CurrentSpeed = 0;
                 }
@@ -450,28 +450,28 @@ namespace PhluxApps.TopDownEngine
                     {
                         if (DimensionMode == DimensionModes.TwoD)
                         {
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) || (_currentDiaginalDirection == GridDiaginalDirections.UpRight)) && (_controller.DetectedObstacleUp != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) || (_currentDiagonalDirection == GridDiagonalDirections.UpRight)) && (_controller.DetectedObstacleUp != null))
                             {
                                 Collider2D obstacleCollider = _controller.DetectedObstacleUp.GetComponent<Collider2D>();
                                 Physics2D.IgnoreCollision(obstacleCollider, _collider2D, true);
                                 _ignoreed2DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) || (_currentDiaginalDirection == GridDiaginalDirections.DownRight)) && (_controller.DetectedObstacleDown != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) || (_currentDiagonalDirection == GridDiagonalDirections.DownRight)) && (_controller.DetectedObstacleDown != null))
                             {
                                 Collider2D obstacleCollider = _controller.DetectedObstacleDown.GetComponent<Collider2D>();
                                 Physics2D.IgnoreCollision(obstacleCollider, _collider2D, true);
                                 _ignoreed2DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) || (_currentDiaginalDirection == GridDiaginalDirections.DownLeft)) && (_controller.DetectedObstacleLeft != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) || (_currentDiagonalDirection == GridDiagonalDirections.DownLeft)) && (_controller.DetectedObstacleLeft != null))
                             {
                                 Collider2D obstacleCollider = _controller.DetectedObstacleLeft.GetComponent<Collider2D>();
                                 Physics2D.IgnoreCollision(obstacleCollider, _collider2D, true);
                                 _ignoreed2DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.DownRight) || (_currentDiaginalDirection == GridDiaginalDirections.UpRight)) && (_controller.DetectedObstacleRight != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.DownRight) || (_currentDiagonalDirection == GridDiagonalDirections.UpRight)) && (_controller.DetectedObstacleRight != null))
                             {
                                 Collider2D obstacleCollider = _controller.DetectedObstacleRight.GetComponent<Collider2D>();
                                 Physics2D.IgnoreCollision(obstacleCollider, _collider2D, true);
@@ -481,28 +481,28 @@ namespace PhluxApps.TopDownEngine
                         }
                         else
                         {
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) || (_currentDiaginalDirection == GridDiaginalDirections.UpRight)) && (_controller.DetectedObstacleUp != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) || (_currentDiagonalDirection == GridDiagonalDirections.UpRight)) && (_controller.DetectedObstacleUp != null))
                             {
                                 Collider obstacleCollider = _controller.DetectedObstacleUp.GetComponent<Collider>();
                                 Physics.IgnoreCollision(obstacleCollider, _collider, true);
                                 _ignoreed3DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) || (_currentDiaginalDirection == GridDiaginalDirections.DownRight)) && (_controller.DetectedObstacleDown != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) || (_currentDiagonalDirection == GridDiagonalDirections.DownRight)) && (_controller.DetectedObstacleDown != null))
                             {
                                 Collider obstacleCollider = _controller.DetectedObstacleDown.GetComponent<Collider>();
                                 Physics.IgnoreCollision(obstacleCollider, _collider, true);
                                 _ignoreed3DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.UpLeft) || (_currentDiaginalDirection == GridDiaginalDirections.DownRight)) && (_controller.DetectedObstacleLeft != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.UpLeft) || (_currentDiagonalDirection == GridDiagonalDirections.DownRight)) && (_controller.DetectedObstacleLeft != null))
                             {
                                 Collider obstacleCollider = _controller.DetectedObstacleLeft.GetComponent<Collider>();
                                 Physics.IgnoreCollision(obstacleCollider, _collider, true);
                                 _ignoreed3DCardinalObstacles.Add(obstacleCollider);
                                 _isIgnoringCardinalObstacles = true;
                             }
-                            if (((_currentDiaginalDirection == GridDiaginalDirections.DownLeft) || (_currentDiaginalDirection == GridDiaginalDirections.UpRight)) && (_controller.DetectedObstacleRight != null))
+                            if (((_currentDiagonalDirection == GridDiagonalDirections.DownLeft) || (_currentDiagonalDirection == GridDiagonalDirections.UpRight)) && (_controller.DetectedObstacleRight != null))
                             {
                                 Collider obstacleCollider = _controller.DetectedObstacleRight.GetComponent<Collider>();
                                 Physics.IgnoreCollision(obstacleCollider, _collider, true);
@@ -535,16 +535,16 @@ namespace PhluxApps.TopDownEngine
 		protected override void ProcessBuffer()
         {
             // if we have a direction in input, it becomes our new buffered direction
-            if ((_inputDiaginalDirection != GridDiaginalDirections.None) && !_stopBuffered)
+            if ((_inputDiagonalDirection != GridDiagonalDirections.None) && !_stopBuffered)
             {
-                _bufferedDiaginalDirection = _inputDiaginalDirection;
+                _bufferedDiagonalDirection = _inputDiagonalDirection;
                 _lastBufferInGridUnits = BufferSize;
             }
 
             // if we're not moving and get an input, we start moving
-            if (!_agentMoving && _inputDiaginalDirection != GridDiaginalDirections.None)
+            if (!_agentMoving && _inputDiagonalDirection != GridDiagonalDirections.None)
             {
-                _currentDiaginalDirection = _inputDiaginalDirection;
+                _currentDiagonalDirection = _inputDiagonalDirection;
                 _agentMoving = true;
             }
 
@@ -557,21 +557,21 @@ namespace PhluxApps.TopDownEngine
 
             // we handle the buffer. If we have a buffered direction, are on a perfect tile, and
             // don't have an input
-            if ((_bufferedDiaginalDirection != GridDiaginalDirections.None) && !_movingToNextGridUnit && (_inputDiaginalDirection == GridDiaginalDirections.None) && UseInputBuffer)
+            if ((_bufferedDiagonalDirection != GridDiagonalDirections.None) && !_movingToNextGridUnit && (_inputDiagonalDirection == GridDiagonalDirections.None) && UseInputBuffer)
             {
                 // we reduce the buffer counter
                 _lastBufferInGridUnits--;
                 // if our buffer is expired, we revert to our current direction
-                if ((_lastBufferInGridUnits < 0) && (_bufferedDiaginalDirection != _currentDiaginalDirection))
+                if ((_lastBufferInGridUnits < 0) && (_bufferedDiagonalDirection != _currentDiagonalDirection))
                 {
-                    _bufferedDiaginalDirection = _currentDiaginalDirection;
+                    _bufferedDiagonalDirection = _currentDiagonalDirection;
                 }
             }
 
             // if we have a stop planned and are not moving, we stop
             if ((_stopBuffered) && !_movingToNextGridUnit)
             {
-                _bufferedDiaginalDirection = GridDiaginalDirections.None;
+                _bufferedDiagonalDirection = GridDiagonalDirections.None;
                 _stopBuffered = false;
             }
         }
@@ -581,36 +581,36 @@ namespace PhluxApps.TopDownEngine
         /// </summary>
 		protected override void DetermineEndPosition()
         {
-            TargetGridPosition = CurrentCellCoordinates + ConvertDirectionToVector3Int(_currentDiaginalDirection);
+            TargetGridPosition = CurrentCellCoordinates + ConvertDirectionToVector3Int(_currentDiagonalDirection);
             _endWorldPosition = GridManager.Instance.CellToWorldCoordinates(TargetGridPosition);
             // we maintain our z(2D) or y (3D)
             _endWorldPosition = DimensionClamp(_endWorldPosition);
         }
 
-        protected virtual Vector3Int ConvertDirectionToVector3Int(GridDiaginalDirections direction)
+        protected virtual Vector3Int ConvertDirectionToVector3Int(GridDiagonalDirections direction)
         {
-            if (direction != GridDiaginalDirections.None)
+            if (direction != GridDiagonalDirections.None)
             {
-                if (direction == GridDiaginalDirections.Left) return Vector3Int.left;
-                if (direction == GridDiaginalDirections.Right) return Vector3Int.right;
+                if (direction == GridDiagonalDirections.Left) return Vector3Int.left;
+                if (direction == GridDiagonalDirections.Right) return Vector3Int.right;
 
                 if (DimensionMode == DimensionModes.TwoD)
                 {
-                    if (direction == GridDiaginalDirections.Up) return Vector3Int.up;
-                    if (direction == GridDiaginalDirections.Down) return Vector3Int.down;
-                    if (direction == GridDiaginalDirections.UpLeft) return Vector3Int.up + Vector3Int.left;
-                    if (direction == GridDiaginalDirections.UpRight) return Vector3Int.up + Vector3Int.right;
-                    if (direction == GridDiaginalDirections.DownLeft) return Vector3Int.down + Vector3Int.left;
-                    if (direction == GridDiaginalDirections.DownRight) return Vector3Int.down + Vector3Int.right;
+                    if (direction == GridDiagonalDirections.Up) return Vector3Int.up;
+                    if (direction == GridDiagonalDirections.Down) return Vector3Int.down;
+                    if (direction == GridDiagonalDirections.UpLeft) return Vector3Int.up + Vector3Int.left;
+                    if (direction == GridDiagonalDirections.UpRight) return Vector3Int.up + Vector3Int.right;
+                    if (direction == GridDiagonalDirections.DownLeft) return Vector3Int.down + Vector3Int.left;
+                    if (direction == GridDiagonalDirections.DownRight) return Vector3Int.down + Vector3Int.right;
                 }
                 else
                 {
-                    if (direction == GridDiaginalDirections.Up) return Vector3Int.RoundToInt(Vector3.forward);
-                    if (direction == GridDiaginalDirections.Down) return Vector3Int.RoundToInt(Vector3.back);
-                    if (direction == GridDiaginalDirections.UpLeft) return Vector3Int.RoundToInt(Vector3.forward + Vector3.left);
-                    if (direction == GridDiaginalDirections.UpRight) return Vector3Int.RoundToInt(Vector3.forward + Vector3.right);
-                    if (direction == GridDiaginalDirections.DownLeft) return Vector3Int.RoundToInt(Vector3.back + Vector3.left);
-                    if (direction == GridDiaginalDirections.DownRight) return Vector3Int.RoundToInt(Vector3.back + Vector3.right);
+                    if (direction == GridDiagonalDirections.Up) return Vector3Int.RoundToInt(Vector3.forward);
+                    if (direction == GridDiagonalDirections.Down) return Vector3Int.RoundToInt(Vector3.back);
+                    if (direction == GridDiagonalDirections.UpLeft) return Vector3Int.RoundToInt(Vector3.forward + Vector3.left);
+                    if (direction == GridDiagonalDirections.UpRight) return Vector3Int.RoundToInt(Vector3.forward + Vector3.right);
+                    if (direction == GridDiagonalDirections.DownLeft) return Vector3Int.RoundToInt(Vector3.back + Vector3.left);
+                    if (direction == GridDiagonalDirections.DownRight) return Vector3Int.RoundToInt(Vector3.back + Vector3.right);
                 }
             }
             return Vector3Int.zero;
@@ -621,20 +621,20 @@ namespace PhluxApps.TopDownEngine
         /// </summary>
         /// <param name="direction"></param>
         /// <returns></returns>
-        protected virtual GridDiaginalDirections GetInverseDirection(GridDiaginalDirections direction)
+        protected virtual GridDiagonalDirections GetInverseDirection(GridDiagonalDirections direction)
         {
-            if (direction != GridDiaginalDirections.None)
+            if (direction != GridDiagonalDirections.None)
             {
-                if (direction == GridDiaginalDirections.Left) return GridDiaginalDirections.Right;
-                if (direction == GridDiaginalDirections.Right) return GridDiaginalDirections.Left;
-                if (direction == GridDiaginalDirections.Up) return GridDiaginalDirections.Down;
-                if (direction == GridDiaginalDirections.Down) return GridDiaginalDirections.Up;
-                if (direction == GridDiaginalDirections.UpLeft) return GridDiaginalDirections.DownRight;
-                if (direction == GridDiaginalDirections.UpRight) return GridDiaginalDirections.DownLeft;
-                if (direction == GridDiaginalDirections.DownLeft) return GridDiaginalDirections.UpRight;
-                if (direction == GridDiaginalDirections.DownRight) return GridDiaginalDirections.UpLeft;
+                if (direction == GridDiagonalDirections.Left) return GridDiagonalDirections.Right;
+                if (direction == GridDiagonalDirections.Right) return GridDiagonalDirections.Left;
+                if (direction == GridDiagonalDirections.Up) return GridDiagonalDirections.Down;
+                if (direction == GridDiagonalDirections.Down) return GridDiagonalDirections.Up;
+                if (direction == GridDiagonalDirections.UpLeft) return GridDiagonalDirections.DownRight;
+                if (direction == GridDiagonalDirections.UpRight) return GridDiagonalDirections.DownLeft;
+                if (direction == GridDiagonalDirections.DownLeft) return GridDiagonalDirections.UpRight;
+                if (direction == GridDiagonalDirections.DownRight) return GridDiagonalDirections.UpLeft;
             }
-            return GridDiaginalDirections.None;
+            return GridDiagonalDirections.None;
         }
 
         protected override void HandleState()
@@ -680,7 +680,7 @@ namespace PhluxApps.TopDownEngine
 
             _controller.DetectObstacles(distance, offset);
 
-            if (!DiaginalMovement)
+            if (!DiagonalMovement)
                 return;
 
             if (DimensionMode == DimensionModes.TwoD)
