@@ -15,8 +15,8 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **Boomerang**, _by AlexanderGheorghe_ : a component that makes Projectile decelerate and return to the owner when it stops. works in both 2D and 3D. includes 3D demo, unitypackage for easy installation and boomerang model from [The Base Mesh](https://thebasemesh.com/model-library)
 * **AdvancedCharacterGridMovement**, _by [JCPhlux](https://github.com/jcphlux)_ : Inhanced version of CharacterGridMovement that allows for more control over the movement of the character. Single script that works for both 2D and 3D.
     Options include:
-    * Diaginal Movement: When true allows for diaginal movement.
-    * Ignore Cardinal obstacles: When true allows for diaginal movement even if blocked by Cardinal Direction Obstacles.
+    * Diagonal Movement: When true allows for diagonal movement.
+    * Ignore Cardinal obstacles: When true allows for diagonal movement even if blocked by Cardinal Direction Obstacles.
     *Ignore Cardinal obstacles is still a WIP for 3D movement but works for 2D movement.*
     * Ignore Cardinal obstacle Movement State: Configurable movement state to set the movement state to when moving through a cardinal direction obstacle. *ex. set to "Jumping" to set the state to "Jumping" when moving through a cardinal direction obstacle.*
 
