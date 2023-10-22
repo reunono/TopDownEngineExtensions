@@ -29,7 +29,7 @@ namespace StatusSystem
                 if (DamagePerInterval > 0)
                     health.Damage(DamagePerInterval, character.gameObject, 0f, 0f, Vector3.zero);
                 else
-                    health.GetHealth(-DamagePerInterval, character.gameObject);
+                    health.ReceiveHealth(-DamagePerInterval, character.gameObject);
             }
         }
 
