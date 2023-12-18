@@ -24,6 +24,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 
 * **CharacterInventoryWeaponChanger**, _by AlexanderGheorghe_ : this script allows you to use scroll wheel or number keys to change your weapon to any weapon from your MainInventory
 * **CharacterMultiButtonActivation**, _by AlexanderGheorghe_ : extension of CharacterButtonActivation that lets characters interact with multiple ButtonActivated that they're touching
+* **CharacterWeaponMagazineMemorizer**, _by AlexanderGheorghe_ : Memorize the remaining ammo on the weapon so when switching back to it, it retains the current ammo instead of a full clip.
 * **CharacterProne**, _by AlexanderGheorghe_ : duplicate of CharacterCrouch that allows you to have different animations (Animator parameters "Prone" and "ProneMoving") and different collider resizing, useful for making a character prone like in Metal Gear Solid, for example
 * **ClimbingController3D**, _by AlexanderGheorghe_ : An extension of TopDownController3D which gives you the option (activated by default) to have CharacterDash3D climb slopes instead of stopping at obstacles and to move the character downwards while dashing, at a configurable speed. It uses CharacterController.Move(), which means you no longer need to put objects to avoid when dashing on the layers of the obstacles layer mask, because the CharacterController will be handling collisions.
 * **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
