@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace ConveyorBelts.Scripts
 {
-    public class CharacterConveyorMovable : ConveyorMovable
+    public class CharacterConveyorMovable : MonoBehaviour, IConveyorMovable
     {
         private TopDownController3D _controller;
         private void Awake() => _controller = GetComponent<TopDownController3D>();
-        protected override void Move(Vector3 movement) => _controller.AddForce(movement);
+        void IConveyorMovable.Move(Vector3 movement) => _controller.AddForce(movement);
     }
 }
