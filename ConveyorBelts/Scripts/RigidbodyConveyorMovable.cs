@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace ConveyorBelts.Scripts
 {
-    public class RigidbodyConveyorMovable : ConveyorMovable
+    public class RigidbodyConveyorMovable : MonoBehaviour, IConveyorMovable
     {
         private Rigidbody _rigidbody;
         private void Awake() => _rigidbody = GetComponent<Rigidbody>();
-        protected override void Move(Vector3 movement) => _rigidbody.position += movement * Time.deltaTime;
+        void IConveyorMovable.Move(Vector3 movement) => _rigidbody.position += movement * Time.deltaTime;
     }
 }

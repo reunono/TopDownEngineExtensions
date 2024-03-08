@@ -4,6 +4,6 @@ namespace ConveyorBelts.Scripts
 {
     public interface IConveyorMovable
     {
-        public void AddMovement(Vector3 movement);
+        public void Move(Vector3 movement);
     }
 }
