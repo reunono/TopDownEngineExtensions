@@ -63,6 +63,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **TwinStickShooterHandleWeapon**, _by AlexanderGheorghe_ : an extension of CharacterHandleWeapon that gives you the option to shoot on receiving SecondaryMovement input, with configurable minimum magnitude of the input
 * **TypedDamage**, _by AlexanderGheorghe_ : a collection of extension scripts that implement typed damage with scriptable objects, like explained in [this video](https://youtu.be/_q21rEaSlAs).
 * **Vehicle**, _by AlexanderGheorghe_ : allows creating vehicles that the player character can enter, drive and exit. uses [Hayden Donnelly's Vehicle-Physics](https://github.com/hayden-donnelly/Vehicle-Physics).
+* **WeaponAutoDestroyWhenEmpty**, _by AlexanderGheorghe_ : component that enables the Auto Destroy When Empty option to work without the Weapon Ammo component. goes on your magazine based, Auto Destroy When Empty weapon
 * **WeaponCooldownProgressBar**, _by AlexanderGheorghe_ : put this component on a MMProgressBar and it will be updated with the weapon's cooldown progress
 * **WeaponLaserSightEx**, _by Velsthinez_ : an extended version of the base WeaponLaserSight to create a widening laser when player turns
 
