@@ -53,6 +53,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **RewiredIntegration**, _by Tony Li [Pixel Crushers]_ : support for the input solution Rewired, available on the Unity Asset Store.
 * **RootMotionMovement**, _by AlexanderGheorghe_ : allows root motion animations to move the top down controller 3D
 * **SaveIKHandlesPositionInPlayMode**, _by AlexanderGheorghe_ : a component that goes on the Weapon/WeaponModel GameObject in a prefab asset and saves the play mode changes to the local position and rotation of the IK handles to the prefab asset
+* **SetBrainTargetToDamageInstigatorOwner**, _by AlexanderGheorghe_ : put this component in your scene and it will set the Target of characters' AIBrains to the damage instigator's owner when they get hit
 * **SpecificInvulnerabilityHealth**, _by AlexanderGheorghe_ : an extension of Health that calculates invulnerability per instigator GameObject (DamageOnTouch usually). this allows you to have overlapping damage on touch all affect your characters and count down invulnerability individually
 * **SpeedMultipliers**, _by AlexanderGheorghe_ : extension scripts that add speed multipliers. includes demo of slowing down all enemy characters while the player continues to move at normal speed
 * **Stamina**, _by AlexanderGheorghe_ : simple stamina that gets consumed when running or dashing and stops either if it's too low
