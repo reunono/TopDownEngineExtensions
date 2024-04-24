@@ -9,7 +9,7 @@ public class SetBrainTargetToDamageInstigatorOwner : MonoBehaviour, MMEventListe
         if (instigator.TryGetComponent<DamageOnTouch>(out var damage) && damage.Owner && damage.Owner.TryGetComponent<Character>(out var character)) owner = character;
         else if (instigator.TryGetComponent<Weapon>(out var weapon) && weapon.Owner) owner = weapon.Owner;
         else return;
-        if (damageTakenEvent.AffectedHealth.TryGetComponent<Character>(out var affectedCharacter))
+        if (damageTakenEvent.AffectedHealth.TryGetComponent<Character>(out var affectedCharacter) && affectedCharacter.CharacterBrain)
             affectedCharacter.CharacterBrain.Target = owner.transform;
     }
     private void OnEnable() => this.MMEventStartListening();
