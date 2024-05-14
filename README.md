@@ -5,6 +5,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 ## Contents
 
 * **AngleBasedAutoAim**, _by AlexanderGheorghe_ : extensions of WeaponAutoAim2D/3D that aim at the target with the smallest angle between the movement direction and the character-target direction instead of the closest target
+* **AOEWeapon**, _by Sargorath_ : a weapon class aimed specifically at allowing the creation of various projectile weapons, from shotgun to machine gun, via plasma gun or rocket launcher
 * **AStar Pathfinder3DAiAction**, _by ZUR1EL_ : Add this Ai Action to your enemy AiBrain to allow A* to control them.
 * **AIAction2DPathFinding**, _by Gabriel Elkind_ : an A* Pathfinding Project integration
 * **AIActionMoveTowardsPlayer2D**, _by Efreeti_ : makes the character move up to the specified MinimumDistance in the direction of the target.
