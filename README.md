@@ -25,6 +25,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 
 * **CharacterInventoryWeaponChanger**, _by AlexanderGheorghe_ : this script allows you to use scroll wheel or number keys to change your weapon to any weapon from your MainInventory
 * **CharacterMultiButtonActivation**, _by AlexanderGheorghe_ : extension of CharacterButtonActivation that lets characters interact with multiple ButtonActivated that they're touching
+* **CharacterRunWhenFaceDirection3D**, _by Aitor F._: Extension of CharacterRun that only permit the Character to run when is facing the movement direction, allowing for a small angular threshold. Useful when using a Weapon with AutoAim or when AimControl is set to Secondary Movement. For example, you can run aiming towards an enemy, but if you aim while moving away you can't.
 * **CharacterWeaponMagazineMemorizer**, _by AlexanderGheorghe_ : Memorize the remaining ammo on the weapon so when switching back to it, it retains the current ammo instead of a full clip.
 * **CharacterOrientation3DExtensions**, _by AlexanderGheorghe_ : extension methods for forcing character orientation towards a transform. includes a usage example in CharacterForceLookAtZone
 * **CharacterProne**, _by AlexanderGheorghe_ : duplicate of CharacterCrouch that allows you to have different animations (Animator parameters "Prone" and "ProneMoving") and different collider resizing, useful for making a character prone like in Metal Gear Solid, for example
