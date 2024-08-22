@@ -10,6 +10,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 * **AIAction2DPathFinding**, _by Gabriel Elkind_ : an A* Pathfinding Project integration
 * **AIActionMoveTowardsPlayer2D**, _by Efreeti_ : makes the character move up to the specified MinimumDistance in the direction of the target.
 * **AI Brain Extensions**, _by TheBitCave_ : These are hosted separately, at [https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine](https://github.com/thebitcave/ai-brain-extensions-for-topdown-engine), and provide a way to interact with AI Brains using visual nodes.
+* **AIDecisionComposite**, _by AlexanderGheorghe_, an AI decision that returns based on the values of other AI decisions. can toggle between AND-ing and OR-ing the decisions together and negating specific decisions
 * **AIDecisionPlayerIsInSameRoom**, _by 石田ぎがしー Gigacee_, an AI decision that returns true if the player is in one of the specified rooms, false otherwise.
 * **AI Performance Manager**, _by Force_ : A system used to disable AIs based on distance to the player for better performance
 * **BlockAbilities**, _by AlexanderGheorghe_: scripts for blocking selected character abilities while attacking
