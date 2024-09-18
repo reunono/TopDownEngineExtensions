@@ -14,7 +14,7 @@ namespace StatusSystem
             ChangeSpeed(character, AdditionalSpeed);
         }
 
-        protected override void Unapply(Character character)
+        public override void Unapply(Character character)
         {
             ChangeSpeed(character, -AdditionalSpeed);
         }

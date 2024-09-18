@@ -9,9 +9,8 @@ namespace StatusSystem
         public float Multiplier = 2f;
         
         private CharacterDamageMultipliers _multipliers;
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
             _multipliers = Resources.Load<CharacterDamageMultipliers>("RuntimeSets/CharacterDamageMultipliers");
         }
 
@@ -21,7 +20,7 @@ namespace StatusSystem
             _multipliers[character] *= Multiplier;
         }
 
-        protected override void Unapply(Character character)
+        public override void Unapply(Character character)
         {
             StatusEffectEvent.Trigger(this, character, StatusEffectEventTypes.Stop);
             _multipliers[character] /= Multiplier;

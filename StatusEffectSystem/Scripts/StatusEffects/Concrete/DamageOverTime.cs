@@ -33,7 +33,7 @@ namespace StatusSystem
             }
         }
 
-        protected override void Unapply(Character character)
+        public override void Unapply(Character character)
         {
             character.StopCoroutine(_coroutines[character]);
         }

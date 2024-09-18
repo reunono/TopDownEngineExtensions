@@ -22,6 +22,12 @@ namespace StatusSystem
                 if (statusEffect != StatusEffect) return;
                 StatusEffect.Apply(character);
             }
+            
+            public void OnUnapply(StatusEffect statusEffect, Character character)
+            {
+                if (statusEffect != StatusEffect) return;
+                StatusEffect.Unapply(character);
+            }
 
             public void OnStart(StatusEffect statusEffect)
             {
@@ -51,6 +57,10 @@ namespace StatusSystem
                 case StatusEffectEventTypes.Apply:
                     foreach (var statusEffectsFeedback in StatusEffectsAndFeedbacks)
                         statusEffectsFeedback.OnApply(statusEffectEvent.StatusEffect, _character);
+                    break;
+                case StatusEffectEventTypes.Unapply:
+                    foreach (var statusEffectsFeedback in StatusEffectsAndFeedbacks)
+                        statusEffectsFeedback.OnUnapply(statusEffectEvent.StatusEffect, _character);
                     break;
                 case StatusEffectEventTypes.Start:
                     foreach (var statusEffectsFeedback in StatusEffectsAndFeedbacks)
