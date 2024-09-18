@@ -12,7 +12,7 @@ namespace StatusSystem
             character.Freeze();
         }
 
-        protected override void Unapply(Character character)
+        public override void Unapply(Character character)
         {
             character.UnFreeze();
         }

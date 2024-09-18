@@ -16,61 +16,43 @@ namespace StatusSystem
 
         protected override void OnCollideWithDamageable(Health health)
         {
-            // if what we're colliding with is a TopDownController, we apply a knockback force
-            _colliderTopDownController = health.gameObject.MMGetComponentNoAlloc<TopDownController>();
-            _colliderRigidBody = health.gameObject.MMGetComponentNoAlloc<Rigidbody>();
+            _collidingHealth = health;
 
-            if ((_colliderTopDownController != null) && (DamageCausedKnockbackForce != Vector3.zero) && (!_colliderHealth.Invulnerable) && (!_colliderHealth.ImmuneToKnockback))
+            if (health.CanTakeDamageThisFrame())
             {
-                _knockbackForce = DamageCausedKnockbackForce;
-
-                if (_twoD) // if we're in 2D
+                // if what we're colliding with is a TopDownController, we apply a knockback force
+                _colliderTopDownController = health.gameObject.MMGetComponentNoAlloc<TopDownController>();
+                if (_colliderTopDownController == null)
                 {
-                    if (DamageCausedKnockbackDirection == KnockbackDirections.BasedOnSpeed)
-                    {
-                        Vector3 totalVelocity = _colliderTopDownController.Speed + _velocity;
-                        _knockbackForce = Vector3.RotateTowards(DamageCausedKnockbackForce, totalVelocity.normalized, 10f, 0f);
-                    }
-                    if (DamageCausedKnockbackDirection == KnockbackDirections.BasedOnOwnerPosition)
-                    {
-                        if (Owner == null) { Owner = this.gameObject; }
-                        Vector3 relativePosition = _colliderTopDownController.transform.position - Owner.transform.position;
-                        _knockbackForce = Vector3.RotateTowards(DamageCausedKnockbackForce, relativePosition.normalized, 10f, 0f);
-                    }    
-                }
-                else // if we're in 3D
-                {
-                    if (DamageCausedKnockbackDirection == KnockbackDirections.BasedOnSpeed)
-                    {
-                        Vector3 totalVelocity = _colliderTopDownController.Speed + _velocity;
-                        _knockbackForce = DamageCausedKnockbackForce * totalVelocity.magnitude;
-                    }
-                    if (DamageCausedKnockbackDirection == KnockbackDirections.BasedOnOwnerPosition)
-                    {
-                        if (Owner == null) { Owner = this.gameObject; }
-                        Vector3 relativePosition = _colliderTopDownController.transform.position - Owner.transform.position;
-                        _knockbackForce.x = relativePosition.normalized.x * DamageCausedKnockbackForce.x;
-                        _knockbackForce.y = DamageCausedKnockbackForce.y;
-                        _knockbackForce.z = relativePosition.normalized.z * DamageCausedKnockbackForce.z;
-                    } 
+                    _colliderTopDownController = health.gameObject.GetComponentInParent<TopDownController>();
                 }
 
-                if (DamageCausedKnockbackType == KnockbackStyles.AddForce)
+                HitDamageableFeedback?.PlayFeedbacks(this.transform.position);
+                HitDamageableEvent?.Invoke(_colliderHealth);
+
+                // we apply the damage to the thing we've collided with
+                float randomDamage = (Owner.TryGetComponent<Character>(out var character) ? _multipliers[character] : 1) *
+                    UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
+
+                ApplyKnockback(randomDamage, TypedDamages);
+
+                DetermineDamageDirection();
+
+                if (RepeatDamageOverTime)
                 {
-                    _colliderTopDownController.Impact(_knockbackForce.normalized, _knockbackForce.magnitude);
+                    _colliderHealth.DamageOverTime(randomDamage, gameObject, InvincibilityDuration,
+                        InvincibilityDuration, _damageDirection, TypedDamages, AmountOfRepeats, DurationBetweenRepeats,
+                        DamageOverTimeInterruptible, RepeatedDamageType);
+                }
+                else
+                {
+                    _colliderHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration,
+                        _damageDirection, TypedDamages);
                 }
             }
 
-            HitDamageableFeedback?.PlayFeedbacks(this.transform.position);
-            
-            // we apply the damage to the thing we've collided with
-            var randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
-            var character = Owner.MMGetComponentNoAlloc<Character>();
-            if (character != null)
-                _colliderHealth.Damage((int)(randomDamage * _multipliers[character]), gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
-            else
-                _colliderHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
-            if (DamageTakenEveryTime + DamageTakenDamageable > 0)
+            // we apply self damage
+            if (DamageTakenEveryTime + DamageTakenDamageable > 0 && !_colliderHealth.PreventTakeSelfDamage)
             {
                 SelfDamage(DamageTakenEveryTime + DamageTakenDamageable);
             }
