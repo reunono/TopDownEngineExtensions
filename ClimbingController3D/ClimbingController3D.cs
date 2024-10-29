@@ -18,7 +18,7 @@ namespace ClimbingControllerExtension
         [Tooltip("the speed to move down at while dashing (in meters per second), useful for sticking to the ground")]
         public float DownwardDashingSpeed = 1000;
         
-        public override void MovePosition(Vector3 newPosition)
+        public override void MovePosition(Vector3 newPosition, bool targetTransform = false)
         {
             if (ClimbWhileDashing)
             {
@@ -28,7 +28,7 @@ namespace ClimbingControllerExtension
                     _characterController.Move(newPosition - _transform.position);
             }
             else
-                base.MovePosition(newPosition);
+                base.MovePosition(newPosition, targetTransform);
         }
     }
 }
