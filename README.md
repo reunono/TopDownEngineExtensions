@@ -35,6 +35,7 @@ This repository contains community-created extensions for the TopDown Engine, Mo
 - **Control Freak 2 Integration**, _by christougher_ : support for the input solution Control Freak 2, available on the Asset Store.
 - **ConveyorBelts**, _by AlexanderGheorghe_, : 3D conveyor belts with implementations for moving Characters and Rigidbodies
 - **DeflectProjectiles**, _by AlexanderGheorghe_, : put this component in your scene and it will make all projectiles deflect off of the objects they deal damage to
+- **EllipticMotion**, _by AlexanderGheorghe_, : component that makes objects have an elliptic local space motion. useful for waving projectile patterns, for example
 - **ExtendedDialogueZome**, _by AlexanderGheorghe_, : DialogueZone extension that adds an OnDialogueEnd action, executed after all dialogue lines have been displayed
 - **GrapplingHook**, _by AlexanderGheorghe_, : 3D grappling hook implementation with [rope animation](https://youtu.be/tPtKNvifpj0). configurable to pull owner towards hit object or the other way around
 - **GridPathfinding**, _by AlexanderGheorghe_, : grid versions of CharacterPathfinder3D and CharacterPathfindToMouse3D
