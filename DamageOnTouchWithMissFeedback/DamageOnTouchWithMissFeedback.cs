@@ -33,7 +33,7 @@ public class DamageOnTouchWithMissFeedback : DamageOnTouch
 
     private void OnAttackStop()
     {
-        if (!_hit) MissFeedback.PlayFeedbacks();
+        if (!_hit) MissFeedback.PlayFeedbacks(transform.position);
         _hit = false;
     }
 
