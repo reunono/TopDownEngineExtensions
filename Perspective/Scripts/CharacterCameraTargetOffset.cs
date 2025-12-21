@@ -24,6 +24,6 @@ public class CharacterCameraTargetOffset : MonoBehaviour, MMEventListener<Perspe
 
     public void OnMMEvent(PerspectiveChangeEvent perspectiveChangeEvent)
     {
-        _character.CameraTarget.transform.localPosition = _character.CameraTarget.transform.localPosition.MMSetX(0).MMSetZ(0);
+        _character.CameraTarget.transform.localPosition = Value;
     }
 }
