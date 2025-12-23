@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2800629486873537267}
   - component: {fileID: 9199280492681024436}
-  - component: {fileID: 8287878498354479}
+  - component: {fileID: 7130052372428430060}
   - component: {fileID: 2800629486873537269}
   - component: {fileID: 2800629486873537271}
   - component: {fileID: 2800629486873537268}
   - component: {fileID: 2800629486873537266}
   m_Layer: 0
-  m_Name: FirstPerson CM vcam
+  m_Name: ThirdPerson CM vcam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 16
---- !u!114 &8287878498354479
+--- !u!114 &7130052372428430060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,16 +92,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0, y: 0.5, z: 0}
-  ShoulderOffset: {x: 0, y: 0, z: 0}
-  VerticalArmLength: 0
-  CameraSide: 0
-  CameraDistance: 0
+  Damping: {x: 0.1, y: 0.5, z: 0.3}
+  ShoulderOffset: {x: 0.5, y: -0.4, z: 0}
+  VerticalArmLength: 0.4
+  CameraSide: 1
+  CameraDistance: 9
   AvoidObstacles:
-    Enabled: 0
+    Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 1
+      m_Bits: 2817
     IgnoreTag: 
     CameraRadius: 0.2
     DampingIntoCollision: 0

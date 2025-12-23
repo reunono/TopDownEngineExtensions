@@ -25,11 +25,11 @@ public class PerspectiveCharacterHandleWeapon : CharacterHandleWeapon, MMEventLi
     public override void ChangeWeapon(Weapon newWeapon, string weaponID, bool combo = false)
     {
         base.ChangeWeapon(newWeapon, weaponID, combo);
-        if (newWeapon != null && _perspective == Perspectives.FirstPerson)
-            ChangeWeaponAimForFirstPerson();
+        if (newWeapon != null && _perspective is Perspectives.FirstPerson or Perspectives.ThirdPerson)
+            ChangeWeaponAimForFirstOrThirdPerson();
     }
 
-    private void ChangeWeaponAimForFirstPerson()
+    private void ChangeWeaponAimForFirstOrThirdPerson()
     {
         if (_weaponAim == null) return;
         var weaponAim = (WeaponAim3D)_weaponAim;
@@ -40,6 +40,8 @@ public class PerspectiveCharacterHandleWeapon : CharacterHandleWeapon, MMEventLi
         weaponAim.MoveCameraTargetTowardsReticle = false;
         weaponAim.AimControl = WeaponAim.AimControls.Script;
         weaponAim.Unrestricted3DAim = true;
+        if (weaponAim.ReticleInstance.TryGetComponent<MMUIFollowMouse>(out var follow)) follow.enabled = false;
+        weaponAim.ReticleInstance.transform.localPosition = Vector3.zero;
     }
 
     private void RestoreOriginalWeaponAimSettings()
@@ -49,12 +51,13 @@ public class PerspectiveCharacterHandleWeapon : CharacterHandleWeapon, MMEventLi
         weaponAim.AimControl = _originalAimControl;
         weaponAim.Unrestricted3DAim = _originalUnrestricted3DAim;
         weaponAim.MoveCameraTargetTowardsReticle = _originalMoveCameraTargetTowardsReticle;
+        if (weaponAim.ReticleInstance.TryGetComponent<MMUIFollowMouse>(out var follow)) follow.enabled = true;
     }
 
     public override void ProcessAbility()
     {
         base.ProcessAbility();
-        if (_weaponAim != null && _perspective == Perspectives.FirstPerson)
+        if (_weaponAim != null && _perspective is Perspectives.FirstPerson or Perspectives.ThirdPerson)
             _weaponAim.SetCurrentAim(_camera.transform.forward);
     }
 
@@ -62,8 +65,9 @@ public class PerspectiveCharacterHandleWeapon : CharacterHandleWeapon, MMEventLi
     {
         var newPerspective = perspectiveChangeEvent.NewPerspective;
         if (newPerspective == _perspective) return;
+        var oldPerspective = _perspective;
         _perspective = newPerspective;
-        if (_perspective == Perspectives.FirstPerson) ChangeWeaponAimForFirstPerson();
-        else RestoreOriginalWeaponAimSettings();
+        if (oldPerspective == Perspectives.TopDown && _perspective is Perspectives.FirstPerson or Perspectives.ThirdPerson) ChangeWeaponAimForFirstOrThirdPerson();
+        else if (_perspective == Perspectives.TopDown) RestoreOriginalWeaponAimSettings();
     }
 }
