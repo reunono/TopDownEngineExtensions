@@ -5340,23 +5340,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.35
+      value: -9.52
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2800002
+      value: 20.334724
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.030001
+      value: -23.75
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8887373
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.45841685
       objectReference: {fileID: 0}
     - target: {fileID: 4407977586509776, guid: d4529f47989526241929319abfdfc29d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -6236,7 +6236,7 @@ MonoBehaviour:
     CameraTargetOffset: {x: 0, y: 2.5, z: 0}
     CrouchCameraTargetOffset: {x: 0, y: 1.5, z: 0}
     MouseSensitivity: {x: 0.3, y: 0.3}
-    StickSensitivity: {x: 1, y: 1}
+    StickSensitivity: {x: 120, y: 120}
     InvertMouseVertical: 0
     InvertMouseHorizontal: 0
     InvertStickVertical: 0
