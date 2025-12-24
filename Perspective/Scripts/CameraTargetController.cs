@@ -17,7 +17,7 @@ public class CameraTargetController : MonoBehaviour
         if (_cameraTarget.rotation == Quaternion.identity) _verticalRotation = 0;
         var lookInput = _perspectiveInput.Perspective.Look.ReadValue<Vector2>();
         var mouse = Input.mousePositionDelta != Vector3.zero;
-        var sensitivity = mouse ? _settings.MouseSensitivity : _settings.StickSensitivity;
+        var sensitivity = mouse ? _settings.MouseSensitivity : _settings.StickSensitivity * Time.deltaTime;
         var invertHorizontal = mouse ? _settings.InvertMouseHorizontal : _settings.InvertStickHorizontal;
         var invertVertical = mouse ? _settings.InvertMouseVertical : _settings.InvertStickVertical;
         var lookX = lookInput.x * sensitivity.x * (invertHorizontal ? -1 : 1);
